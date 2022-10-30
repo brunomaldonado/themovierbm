@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>themovierbm</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.7/glider.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto+Mono:wght@300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.7/glider.min.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header_top cont">
+      <button id="brandButton" class="header_brand left">
+        <img class="brand" src="./src/assets/brand.png" alt="" />
+        <span id="brand_name">BIY_7</span>
+      </button>
+      <div class="header_nav right">
+        <form id="searchForm" action="#">
+          <input type="search" class="search_data" placeholder="Search" required/>
+          <!-- <input id="searchFormButton" type="submit" value=""/> -->
+          <button id="searchFormButton" type="button"></button>
+        </form>
+        <p>my name is...</p>
+        <img class="user" src="./src/assets/user-icon.png" alt="" />
+      </div>
+    </div>
+
+    <section id="bannerSlice" class="backdrop inactivea">
+      <article id="banner" class="TPost banner cont">
+        <header>
+          <div class="title">Squid Game<span class="TpTv">serie</span></div>
+          <h4 class="subTitle">45.6 billion won is child's play.</h4>
+        </header>
+        <footer>
+          <div class="votes">
+            <div class="users_score">
+            </div>
+            <div class="ratings">
+              <!-- <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={staroutline} alt="" />   -->
+            </div>
+            <div class="meta">
+              <span class="country">US</span>
+              <span class="language">en</span>
+              <span class="date">20-07-2022</span>
+            </div>
+          </div>
+        </footer>
+        <div class="description">
+          <p class="desciption_genres">Genres: <span id="genre">Action & Adventure, Mystery, Drama.</span></p>
+          <p class="overview">Hundreds of cash-strapped players accept a strange invitation to compete in children's
+            games—with high
+            stakes. But, a tempting prize awaits the victor.</p>
+        </div>
+        <div class="underside">
+          <button id="bannerButton" class="btn_play TPlay">Play Movie</button>
+        </div>
+      </article>
+      <div class="pb_image">
+        <figure class="objf">
+        </figure>
+      </div>
+    </section>
+  </header>
+
+
+
+  <main class="main ">
+    <section id="movieDetail" class="backdrop inactive cont">
+      <article id="TPost" class="TPost ">
+        <div class="pb_image">
+          <figure>
+            <img id="detailPoster_path" class="poster_path" src="./src/assets/dropout0.jpeg" alt="" />
+          </figure>
+        </div>
+        <aside id="aside">
+          <header>
+            <h2 class="movieDetailTitle">Not Okay</h2>
+            <h1 class="movieDetailSubTitle">Get famous or lie trying.</h1>
+          </header>
+          <div class="votes">
+          <div class="users_score">
+            <div class="vote_progress"></div>
+          </div>
+          <div class="ratings"></div>
+          <p class="meta">
+            <span>2h 10m</span>
+            <span>2022</span>
+            <span>Movie</span>
+          </p>
+          </div>
+
+          <div class="description_inside">
+            <div class="info">
+              <p>
+                <span id="production_companies_inside"></span>
+                <span id="release_date_inside"></span>
+                <span id="production_countries_inside"></span>
+              </p>
+              <p>Language: <span class="typeLanguages_inside">...</span>
+              </p>
+              <p>Genres: <span class="categoryType_inside">...</span>
+              </p>
+            </div>
+            <div>
+                <p class="detailOverview_inside">overview inside</p>
+            </div>
+          </div>
+
+        </aside>
+        <div class="description">
+          <div class="info">
+            <p>
+              <span id="production_companies"></span>
+              <span id="release_date"></span>
+              <span id="production_countries"></span>
+            </p>
+            <p>
+              Language: <span class="typeLanguage">..l</span>
+            </p>
+            <p>
+              Genres: <span class="categoryType">..C</span>
+            </p>
+          </div>
+          <div>
+              <p class="detailOverview">overview</p>
+          </div>
+        </div>
+      </article>
+      <div class="pb_image">
+        <figure class="objf ">
+          <img class="clickP" src="./src/assets/axis1.jpeg" alt="" />
+        </figure>
+      </div>
+
+      <article class="billed_cast">
+        <h2 class="billyCast_title">Top Billy Cast</h2>
+        <div id="billy_container" class="filePath_scrollContainer">
+        </div>
+
+        <!-- <div class="overlay">
+          <div class="slideshow">
+            <span class="btn_close" id="btn_close">&times</span>
+            
+            <img src="" id="img_slideshow">
+          </div>
+        </div> -->
+
+      </article>
+
+      <article id="related_movies" class="related_movies inactivea">
+        <div class="previewTriller">
+          <h2>Triller</h2>
+        </div>
+        
+        <div id="mostPopularPreview_left" class="mostPopularPreview_container">
+          <div class="headerTop_container">
+            <div class="related_moviesTitle"><h2>Related Movies</h2></div>
+            <div id="categories_list" class="categoriesPreview_list">
+            </div>
+           </div>
+          <div class="relatedMoviesPreview_movieGrid">
+            <div class="poster_container">
+              <div class="poster_img">
+                <span>2022</span>
+                <figure>
+                  <img class="" src="./src/assets/ana0.jpeg" alt="" />
+                </figure>
+              </div>
+              <p>Chinese Fullmetal Alchemist: La alquimia final</p>
+            </div>
+            <div class="poster_container">
+              <div class="poster_img">
+                <span>2022</span>
+                <figure>
+                  <img class="" src="./src/assets/ana0.jpeg" alt="" />
+                </figure>
+              </div>
+              <p>Chinese Fullmetal Alchemist: La alquimia final</p>
+            </div>
+            <div class="poster_container">
+              <div class="poster_img">
+                <span>2022</span>
+                <figure>
+                  <img class="" src="./src/assets/ana0.jpeg" alt="" />
+                </figure>
+              </div>
+              <p>Chinese Fullmetal Alchemist: La alquimia final</p>
+            </div>
+            <div class="poster_container">
+              <div class="poster_img">
+                <span>2022</span>
+                <figure>
+                  <img class="" src="./src/assets/ana0.jpeg" alt="" />
+                </figure>
+              </div>
+              <p>Chinese Fullmetal Alchemist: La alquimia final</p>
+            </div>
+            <div class="poster_container">
+              <div class="poster_img">
+                <span>2022</span>
+                <figure>
+                  <img class="" src="./src/assets/ana0.jpeg" alt="" />
+                </figure>
+              </div>
+              <p>Chinese Fullmetal Alchemist: La alquimia final</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mostPopularPreview_righ">
+          <div class="top_title">Features Movies</div>
+          <div class="upcomingMoviesPreviewDetail">
+            <div class="container_card">
+              <img class="" src="./src/assets/dropout0.jpeg" alt="" />
+              <div class="info">
+                <h2 class="film_title""">Dropout</h2>
+                <p class="year">2022</p>
+              </div>
+            </div>
+          </div>
+          <div class="top_title">Recommended Movies</div>       
+          <div class="recomendedMoviesPreviewDetail">
+            <div class="container_card">
+              <img class="" src="./src/assets/axis0.jpeg" alt="" />
+              <div class="info">
+                <h2 class="film_title""">Dropout</h2>
+                <p class="year">2022</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="carousel">
+        <div class="carousel_container">
+          <button aria-label="previous" class="carousel_buttons btn_previous">
+            <i class="fa fa-chevron-left"></i>
+          </button>
+          <div id="carousel_list" class="carousel_list">
+          </div>
+          <button aria-label="next" class="carousel_buttons btn_next">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+        </div>
+        
+        <div role="tablist" class="carousel_indicators"></div>
+      </article>
+
+      <div class="overlay">
+        <div class="slideshow">
+          <span class="btn_close" id="btn_close">&times</span>
+          <button aria-label="previous" class="modal_buttons btn_previous">
+            <i class="fa fa-chevron-left"></i>
+          </button>
+          <button aria-label="next" class="modal_buttons btn_next">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+          <img src="" id="img_slideshow">
+        </div>
+      </div>
+    </section>
+
+    <section id="trendingPreview" class="trendingPreview_container cont inactivea">
+      <div class="trendingPreview_header">
+        <h2 class="trendingPreview_title">Trending</h2>
+        <button id="trendsButton" class="btn_play TPlay">See More...</button>
+      </div>
+      <article class="trendingPreview_movieList"></article>
+    </section>
+
+    <section id="categoriesPreview" class="categoriesPreview_container cont inactivea">
+      <h2 class="categoriesPreview_title">Categories</h2>
+      <article id="categoriesPreview_list" class="categoriesPreview_list">
+      </article>
+    </section>
+
+    <section class="home_movies cont inactivea">
+      <div id="mostPopularPreview_left" class="mostPopularPreview_container">
+          <h2 class="header_title">Most Popular</h2>
+        <article class="mostPopularPreview_movieGrid">
+        </article>
+      </div>
+      <div class="mostPopularPreview_righ">
+        <div class="top_title">Features Movies</div>
+        <div class="upcomingMoviesPreviewHome">
+          <div class="container_card">
+            <img class="" src="./src/assets/dropout0.jpeg" alt="" />
+            <div class="info">
+              <h2 class="film_title""">Dropout</h2>
+              <p class="year">2022</p>
+            </div>
+          </div>
+        </div>
+        <div class="top_title">Recommended Movies</div>
+        <div class="recomendedMoviesPreviewHome">
+          <div class="container_card">
+            <img class="" src="./src/assets/axis0.jpeg" alt="" />
+            <div class="info">
+              <h2 class="film_title""">Dropout</h2>
+              <p class="year">2022</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h2>copyright Rigoberto Bruno Maldonado</h2>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.7/glider.min.js"></script>
+  <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./src/hide.js"></script>
+  <script src="./src/nodes.js"></script>
+  <script src="./src/main.js"></script>
+  <script src="./src/navigation.js"></script>
+</body>
+
+</html>

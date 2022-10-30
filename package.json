@@ -1,0 +1,15 @@
+{
+  "name": "moviejs",
+  "version": "1.0.0",
+  "description": "BIY TheMovieDB ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rigoberto Bruno Maldonado",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "react-circular-progressbar": "^2.1.0"
+  }
+}
