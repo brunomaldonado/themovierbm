@@ -26,10 +26,9 @@
         <span id="brand_name">BIY_7</span>
       </button>
       <div class="header_nav right">
-        <form id="searchForm" action="#">
-          <input type="search" class="search_data" placeholder="Search" required/>
-          <!-- <input id="searchFormButton" type="submit" value=""/> -->
-          <button id="searchFormButton" type="button"></button>
+        <form onsubmit="return false"action="#" class="form" id="searchForm">
+          <input id="search-box" class="main__input" name="movie" type="search" placeholder="Search...">
+          <button id="btn_searchForm" class="form-container--button" type="button"><img src="./src/assets/search.png" alt=""></button>
         </form>
         <p>my name is...</p>
         <img class="user" src="./src/assets/user-icon.png" alt="" />
@@ -42,9 +41,10 @@
           <div class="title">Squid Game<span class="TpTv">serie</span></div>
           <h4 class="subTitle">45.6 billion won is child's play.</h4>
         </header>
-        <footer>
           <div class="votes">
+            <!-- <div class="users_score"></div> -->
             <div class="users_score">
+              <!-- <div class="vote_progress"></div> -->
             </div>
             <div class="ratings">
               <!-- <img src={star} alt="" />
@@ -53,12 +53,12 @@
             <img src={staroutline} alt="" />   -->
             </div>
             <div class="meta">
-              <span class="country">US</span>
-              <span class="language">en</span>
-              <span class="date">20-07-2022</span>
+              <!-- <span class="banner_country">US</span> -->
+              <span class="banner_language">en</span>
+              <span class="banner_date">20-07-2022</span>
+              <span class="banner_runtime">146min</span>
             </div>
           </div>
-        </footer>
         <div class="description">
           <p class="desciption_genres">Genres: <span id="genre">Action & Adventure, Mystery, Drama.</span></p>
           <p class="overview">Hundreds of cash-strapped players accept a strange invitation to compete in children's
@@ -93,11 +93,11 @@
           </header>
           <div class="votes">
           <div class="users_score">
-            <div class="vote_progress"></div>
+            <div class="vote_progress">89</div>
           </div>
           <div class="ratings"></div>
           <p class="meta">
-            <span>2h 10m</span>
+            <span class="banner_runtime">146min</span>
             <span>2022</span>
             <span>Movie</span>
           </p>
@@ -294,6 +294,7 @@
         <article class="mostPopularPreview_movieGrid">
         </article>
       </div>
+
       <div class="mostPopularPreview_righ">
         <div class="top_title">Features Movies</div>
         <div class="upcomingMoviesPreviewHome">

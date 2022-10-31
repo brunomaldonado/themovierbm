@@ -4,12 +4,12 @@ brandButton.addEventListener('click', () => {
   window.location.reload();
   // console.log("brandButton return to home");
 })
-searchFormButton.addEventListener('click', () => {
+btnSearchForm.addEventListener('click', () => {
   const s = location.hash = "#search=" + searchFormInput.value.trim();
   searchFormInput.value = "";
   
   window.scroll({
-    top: 570,
+    top: 573,
     behavior: 'smooth'
   })
 
@@ -19,14 +19,15 @@ searchFormButton.addEventListener('click', () => {
   }
   // console.log("search search addEventListener", searchFormInput.value);
 })
-bannerButton.addEventListener('click', () => {
-  location.hash = "#movie=";
-  // console.log("search movie addEventListener");
-})
+
+// bannerButton.addEventListener('click', () => {
+//   location.hash = "#movie=";
+// })
+
 trendsButton.addEventListener('click', () => {
   location.hash = "#trends=";
   window.scroll({
-    top: 570,
+    top: 575,
     behavior: 'smooth'
   })
   // console.log("search trends addEventListener");

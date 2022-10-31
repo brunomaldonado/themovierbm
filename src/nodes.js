@@ -13,13 +13,10 @@ const previewTriller = document.querySelector('.previewTriller');
 const mostPopularPreviewGrid = document.querySelector('.mostPopularPreview_movieGrid')
 const mostPopularPreviewRigh = document.querySelector('.mostPopularPreview_righ')
 const relatedMoviesPreviewGrid = document.querySelector('.relatedMoviesPreview_movieGrid')
-
 const upcomingMoviesPreviewHome = document.querySelector('.upcomingMoviesPreviewHome');
 const upcomingMoviesPreviewDetail = document.querySelector('.upcomingMoviesPreviewDetail');
-
 const recomendedMoviesPreviewHome = document.querySelector('.recomendedMoviesPreviewHome');
 const recomendedMoviesPreviewDetail = document.querySelector('.recomendedMoviesPreviewDetail');
-
 const categoriesPreviewList = document.getElementById('categoriesPreview_list')
 const categoriesList = document.getElementById('categories_list')
 const headerTitle = document.querySelector('.header_title');
@@ -28,12 +25,10 @@ const headerTitle = document.querySelector('.header_title');
 /* ELEMENTS */
 const brandButton = document.getElementById('brandButton')
 const searchFormInput = document.querySelector('#searchForm input');
-const searchFormButton = document.getElementById('searchFormButton');
+const btnSearchForm = document.getElementById('btn_searchForm');
 const bannerButton = document.getElementById('bannerButton');
 const trendsButton = document.getElementById('trendsButton');
-
 const categories_list = document.getElementById('categories_list');
-
 const movieDetailTitle = document.querySelector('.movieDetailTitle')
 const billyCastScrollContainer = document.querySelector('#billy_container')
 const filePathScrollContainer = document.querySelector('#filePath_container');
@@ -41,6 +36,8 @@ const btn_close = document.querySelector('#btn_close');
 const movieDetailSubTitle = document.querySelector('.movieDetailSubTitle')
 const detailPoster_path = document.querySelector('.poster_path');
 const detailBackdrop_path = document.querySelector('.clickP');
+const vote_progress = document.querySelector('.vote_progress');
+const users_score = document.querySelector('.users_score');
 const productionCompanies = document.querySelector('#production_companies');
 const productionCompanies_inside = document.querySelector('#production_companies_inside');
 const productionCountries = document.querySelector('#production_countries');

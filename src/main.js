@@ -77,14 +77,15 @@ async function getPopularBannerPreviews() {
   // console.log("request", request.data.results);
   let original = request.data.results[Math.floor(Math.random() * request.data.results.length)]
   let {data} = await getMovieInfo(original.id, 'movie');
-  // console.log("get Info", data);
+  console.log("get Info", data);
 
   const title = document.querySelector('.title');
   const subTitle = document.querySelector('.subTitle');
+  users_score.innerHTML = `${data.vote_average.toFixed(1) * 10}%`
   const overview = document.querySelector('.overview');
-  title.innerText = `${data?.name || data?.original_title || data?.title}`
-  subTitle.innerText = `${data.tagline || data.original_name}`
-  overview.innerText = `${truncate(data.overview, 218)}`
+  title.innerText = `${data?.name || data?.original_title || data?.title}`;
+  subTitle.innerText = `${data.tagline || data.original_name}`;
+  overview.innerText = `${truncate(data.overview, 218)}`;
 
   const bg_image = document.querySelector('.objf');
   const banner_img = document.createElement('img');
@@ -92,9 +93,10 @@ async function getPopularBannerPreviews() {
   banner_img.setAttribute('alt', data.title);
   bg_image.appendChild(banner_img);
 
-  document.querySelector('.country').innerText= `${data.origin_country}`
-  document.querySelector('.language').innerText= `${data.original_language}`
-  document.querySelector('.date').innerText= `${data.first_air_date}`
+  // document.querySelector('.banner_country').innerHTML = `${data}`
+  document.querySelector('.banner_language').innerText= `${data.original_language}`
+  document.querySelector('.banner_date').innerText= `${data.release_date}`
+  document.querySelector('.banner_runtime').innerText= `${data.runtime}min`
   const getGenres = []
   const getGenre = data.genres;
   // console.log('get', getGenre)
@@ -108,6 +110,9 @@ async function getPopularBannerPreviews() {
   const genres = document.querySelector('#genre');
   genres.innerText = `${getGenres.join(', ')}.`;
 
+  bannerButton.addEventListener('click', () => {
+    location.hash = `#movie=${data.id}`;
+  })
 
   /* score percentage */
 
@@ -164,7 +169,7 @@ function createCategories(categories, container) {
     btn.addEventListener('click', (event) => {
       location.hash = `#category=${category.id}-${category.name}`;
       window.scroll({
-        top: 570,
+        top: 566,
         behavior: 'smooth'
       })
     })
@@ -424,7 +429,6 @@ async function getMovieById(id) {
 
   getImages(id)
 
-
   let languages = [];
   const spokenLanguage = dataMovie.spoken_languages;
   // console.log("language", spokenLanguage)
@@ -449,12 +453,14 @@ async function getMovieById(id) {
     categoryType_inside.textContent = ` ;-)`;
   } else {
     // console.log("languages: ", languages.join(", "));
-    categoryType.textContent = `${genres.join(', &')}.`;
-    categoryType_inside.textContent = `${genres.join(', &')}.`;
+    categoryType.textContent = `${genres.join(', ')}.`;
+    categoryType_inside.textContent = `${genres.join(', ')}.`;
   }
 
+  console.log("movie", dataMovie);
   movieDetailTitle.textContent = `${dataMovie?.name || dataMovie?.original_title || dataMovie?.title}`
   movieDetailSubTitle.textContent = dataMovie.tagline || dataMovie.original_name;
+  vote_progress.innerHTML = `${dataMovie.vote_average.toFixed(1) * 10}%`;
   detailPoster_path.setAttribute('src', dataMovie.poster_path ? "http://image.tmdb.org/t/p/original" + dataMovie.poster_path : unavailable);
   detailBackdrop_path.setAttribute('src', dataMovie.backdrop_path ? "http://image.tmdb.org/t/p/original" + dataMovie.backdrop_path : "http://image.tmdb.org/t/p/original" + dataMovie.poster_path );
   detailOverview.textContent = truncate(dataMovie.overview, 280);
@@ -536,7 +542,8 @@ async function getTvById(id) {
 async function getBillyCast(id) {
   // const {data} = await api(`movie/${id}/credits`)
   const {data} = await api(`movie/${id}/credits`)
-  console.log("data cast", data.cast);
+  // console.log("data cast", data.cast);
+
   // const dataCast = data.cast;
   // dataCast.forEach((cast) => {
   //   console.log("getId", cast.id);
@@ -557,7 +564,7 @@ async function getBillyCast(id) {
     billyCast.forEach(cast => {
       // console.log("getId", cast.cast_id);
       
-      console.log("info profile path", getPerson(cast.id));
+      // console.log("info profile path", getPerson(cast.id));
       
       const divContainerCast = document.createElement('div')
       divContainerCast.className = 'container_cast'
