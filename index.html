@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.7/glider.min.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 
 <body>
@@ -26,17 +27,26 @@
         <span id="brand_name">BIY_7</span>
       </button>
       <div class="header_nav right">
-        <form onsubmit="return false"action="#" class="form" id="searchForm">
+        <form action="#" id="searchForm" class="search_box">
+          <input type="text" placeholder="Search...">
+          <button id="btn_searchForm" class="search_btn">
+            <i class="fas fa-search"></i>
+          </button>
+          <button class="cancel_btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </form>
+        <!-- <form onsubmit="return false"action="#" class="form" id="searchForm">
           <input id="search-box" class="main__input" name="movie" type="search" placeholder="Search...">
           <button id="btn_searchForm" class="form-container--button" type="button"><img src="./src/assets/search.png" alt=""></button>
-        </form>
+        </form> -->
         <p>my name is...</p>
         <img class="user" src="./src/assets/user-icon.png" alt="" />
       </div>
     </div>
 
-    <section id="bannerSlice" class="backdrop inactivea">
-      <article id="banner" class="TPost banner cont">
+    <section id="bannerSlice" class="backdrop inactivea cont">
+      <article id="banner" class="TPost banner">
         <header>
           <div class="title">Squid Game<span class="TpTv">serie</span></div>
           <h4 class="subTitle">45.6 billion won is child's play.</h4>
@@ -227,7 +237,7 @@
             <div class="container_card">
               <img class="" src="./src/assets/dropout0.jpeg" alt="" />
               <div class="info">
-                <h2 class="film_title""">Dropout</h2>
+                <h2 class="film_title">Dropout</h2>
                 <p class="year">2022</p>
               </div>
             </div>
@@ -237,7 +247,7 @@
             <div class="container_card">
               <img class="" src="./src/assets/axis0.jpeg" alt="" />
               <div class="info">
-                <h2 class="film_title""">Dropout</h2>
+                <h2 class="film_title">Dropout</h2>
                 <p class="year">2022</p>
               </div>
             </div>
@@ -263,10 +273,10 @@
       <div class="overlay">
         <div class="slideshow">
           <span class="btn_close" id="btn_close">&times</span>
-          <button aria-label="previous" class="modal_buttons btn_previous">
+          <button aria-label="previous" class="carousel_buttons btn_previous left">
             <i class="fa fa-chevron-left"></i>
           </button>
-          <button aria-label="next" class="modal_buttons btn_next">
+          <button aria-label="next" class="carousel_buttons btn_next">
             <i class="fa fa-chevron-right"></i>
           </button>
           <img src="" id="img_slideshow">
@@ -277,7 +287,7 @@
     <section id="trendingPreview" class="trendingPreview_container cont inactivea">
       <div class="trendingPreview_header">
         <h2 class="trendingPreview_title">Trending</h2>
-        <button id="trendsButton" class="btn_play TPlay">See More...</button>
+        <button id="trendsButton" class="btn_play TPlay">See More</button>
       </div>
       <article class="trendingPreview_movieList"></article>
     </section>
@@ -301,7 +311,7 @@
           <div class="container_card">
             <img class="" src="./src/assets/dropout0.jpeg" alt="" />
             <div class="info">
-              <h2 class="film_title""">Dropout</h2>
+              <h2 class="film_title">Dropout</h2>
               <p class="year">2022</p>
             </div>
           </div>
@@ -311,7 +321,7 @@
           <div class="container_card">
             <img class="" src="./src/assets/axis0.jpeg" alt="" />
             <div class="info">
-              <h2 class="film_title""">Dropout</h2>
+              <h2 class="film_title">Dropout</h2>
               <p class="year">2022</p>
             </div>
           </div>

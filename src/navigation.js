@@ -4,21 +4,46 @@ brandButton.addEventListener('click', () => {
   window.location.reload();
   // console.log("brandButton return to home");
 })
-btnSearchForm.addEventListener('click', () => {
+// searchBtn.onClick = () => {
+//   searchBox.classList.add('active');
+//   console.log("click")
+// }
+searchBtn.addEventListener('click', () => {
+  searchBox.classList.add('active');
+  searchInput.classList.add('active');
+  searchBtn.classList.add('active');
+  cancelBtn.classList.add('active');
+
   const s = location.hash = "#search=" + searchFormInput.value.trim();
   searchFormInput.value = "";
   
-  window.scroll({
-    top: 573,
-    behavior: 'smooth'
-  })
+  // window.scroll({
+  //   top: 573,
+  //   behavior: 'smooth'
+  // })
 
-  if(location.hash !== "undefined") {
+  // if(location.hash !== "undefined") {
+  //   getMostPopular();
+  //   window.scrollTo(0, 0);
+  // }
+
+  if(searchInput.value != "") {
     getMostPopular();
+    headerTitle.innerText = `No results found`;
     window.scrollTo(0, 0);
+  } else {
+    headerTitle.innerText = "Search results found";
   }
   // console.log("search search addEventListener", searchFormInput.value);
 })
+
+// cancelBtn.addEventListener('click', () => {
+//   searchBox.classList.remove('active');
+//   searchInput.classList.remove('active');
+//   searchBtn.classList.remove('active');
+//   cancelBtn.classList.remove('active');
+// })
+
 
 // bannerButton.addEventListener('click', () => {
 //   location.hash = "#movie=";
@@ -61,7 +86,7 @@ function homePage() {
   trendingPreviewSection.classList.remove("inactive");
   categoriesPreviewSection.classList.remove("inactive");
   bannerSliceSection.classList.remove("inactive");
-  headerTitle.innerText = "Most Popular";
+  // headerTitle.innerText = "Most Popular";
   homeMoviesSection.classList.remove("inactive")
   relatedMovies.classList.add("inactive");
   
@@ -133,7 +158,7 @@ function tvDetailsPage() {
 function searchPage() {
   bannerSliceSection.classList.remove("inactive");
   movieDetailSection.classList.add("inactive");
-  trendingPreviewSection.classList.add("inactive");
+  // trendingPreviewSection.classList.add("inactive");
   categoriesPreviewSection.classList.remove("inactive"); //solect reference about the browser.
   homeMoviesSection.classList.remove("inactive")
   relatedMovies.classList.add("inactive");
@@ -144,7 +169,7 @@ function searchPage() {
 
   
   // headerTitle.innerText = categoryName;
-  headerTitle.innerText = "Search results found";
+  // headerTitle.innerText = "Search results found";
 
   // console.log("Search!!");
   getCategoriesPreview();
