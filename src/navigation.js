@@ -18,7 +18,7 @@ searchBtn.addEventListener('click', () => {
   cancelBtn.classList.add('active');
   // cancelBtn.classList.remove('active');
 
-  const s = location.hash = "#search=" + searchFormInput.value.trim();
+  const s = location.hash = "#search=" + searchInput.value.trim();
   searchInput.value = "";
   
   // window.scroll({
@@ -31,11 +31,13 @@ searchBtn.addEventListener('click', () => {
   //   window.scrollTo(0, 0);
   // }
 
-  if(searchInput.value != "") {
+  if(searchInput.value === "") {
+    console.log("input an search")
     // getMostPopular();
     headerTitle.innerText = `No results found`;
     window.scrollTo(0, 0);
   } else {
+    console.log("your resutls")
     headerTitle.innerText = "Search results found";
   }
   // console.log("search search addEventListener", searchFormInput.value);
@@ -45,11 +47,11 @@ btnOverlay.addEventListener('click', () => {
   searchBox.classList.add('active');
   searchInput.classList.add('active');
   searchBtn.style.display = "block";
-  searchBtn.classList.add('active');
+  // searchBtn.classList.add('active');
   cancelBtn.classList.add('active');
   cancelBtn.style.display = "block";
   btnOverlay.style.display = 'none';
-
+  console.log("click button one")
 })
 
 window.addEventListener('scroll', () => {
@@ -58,7 +60,9 @@ window.addEventListener('scroll', () => {
       searchBox.classList.remove('active');
       searchInput.classList.remove('active');
       searchBtn.classList.remove('active');
+      searchBtn.style.display = 'none';
       btnOverlay.classList.remove('active');
+      btnOverlay.style.display = 'block';
       cancelBtn.classList.remove('active');
       cancelBtn.style.display = "none";
   } else {
@@ -93,7 +97,6 @@ function navigator() {
     trendsPage()
   } else if (location.hash.startsWith("#search=")) {
     searchPage()
-
   } else if (location.hash.startsWith("#movie=")) {
     // console.log("movie details")
     movieDetailsPage()
@@ -203,6 +206,7 @@ function searchPage() {
   // getUpcomingMoviesPreview();
   // getNowPlayingMoviesPreview();
 }
+
 function trendsPage() {
   bannerSliceSection.classList.remove("inactive");
   movieDetailSection.classList.add("inactive");

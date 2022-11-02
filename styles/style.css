@@ -133,8 +133,8 @@ a {
   transform: translateY(-50%);
   height: 36px;
   width: 36px;
-  color: yellowgreen;
-  background: #f2f2f2;
+  color: rgb(16, 17, 16);
+  background: #60c8da;
   line-height: 36px;
   font-size: 1.8rem;
   text-align: center;
@@ -1789,7 +1789,7 @@ footer{
   }
 
   .search_box {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     /* position: relative; */
     width: 37vw;
     z-index: 1;
