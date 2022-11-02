@@ -1,3 +1,6 @@
+window.addEventListener("DOMContentLoaded", navigator, false)
+window.addEventListener("hashchange", navigator, false)
+
 brandButton.addEventListener('click', () => {
   location.hash = "#home";
   homePage();
@@ -13,9 +16,10 @@ searchBtn.addEventListener('click', () => {
   searchInput.classList.add('active');
   searchBtn.classList.add('active');
   cancelBtn.classList.add('active');
+  // cancelBtn.classList.remove('active');
 
   const s = location.hash = "#search=" + searchFormInput.value.trim();
-  searchFormInput.value = "";
+  searchInput.value = "";
   
   // window.scroll({
   //   top: 573,
@@ -28,7 +32,7 @@ searchBtn.addEventListener('click', () => {
   // }
 
   if(searchInput.value != "") {
-    getMostPopular();
+    // getMostPopular();
     headerTitle.innerText = `No results found`;
     window.scrollTo(0, 0);
   } else {
@@ -37,12 +41,38 @@ searchBtn.addEventListener('click', () => {
   // console.log("search search addEventListener", searchFormInput.value);
 })
 
-// cancelBtn.addEventListener('click', () => {
-//   searchBox.classList.remove('active');
-//   searchInput.classList.remove('active');
-//   searchBtn.classList.remove('active');
-//   cancelBtn.classList.remove('active');
-// })
+btnOverlay.addEventListener('click', () => {
+  searchBox.classList.add('active');
+  searchInput.classList.add('active');
+  searchBtn.style.display = "block";
+  searchBtn.classList.add('active');
+  cancelBtn.classList.add('active');
+  cancelBtn.style.display = "block";
+  btnOverlay.style.display = 'none';
+
+})
+
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 100) {
+      // toTop.classList.add('active');
+      searchBox.classList.remove('active');
+      searchInput.classList.remove('active');
+      searchBtn.classList.remove('active');
+      btnOverlay.classList.remove('active');
+      cancelBtn.classList.remove('active');
+      cancelBtn.style.display = "none";
+  } else {
+      // toTop.classList.remove('active');
+  }
+})
+
+cancelBtn.addEventListener('click', () => {
+  searchBox.classList.remove('active');
+  searchInput.classList.remove('active');
+  searchBtn.classList.remove('active');
+  cancelBtn.classList.remove('active');
+  btnOverlay.style.display = 'block';
+})
 
 
 // bannerButton.addEventListener('click', () => {
@@ -57,9 +87,6 @@ trendsButton.addEventListener('click', () => {
   })
   // console.log("search trends addEventListener");
 })
-
-window.addEventListener("DOMContentLoaded", navigator, false)
-window.addEventListener("hashchange", navigator, false)
 
 function navigator() {
   if (location.hash.startsWith("#trends")) {
@@ -172,9 +199,9 @@ function searchPage() {
   // headerTitle.innerText = "Search results found";
 
   // console.log("Search!!");
-  getCategoriesPreview();
-  getUpcomingMoviesPreview();
-  getNowPlayingMoviesPreview();
+  // getCategoriesPreview();
+  // getUpcomingMoviesPreview();
+  // getNowPlayingMoviesPreview();
 }
 function trendsPage() {
   bannerSliceSection.classList.remove("inactive");

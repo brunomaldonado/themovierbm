@@ -152,7 +152,7 @@ async function getTrendingMoviesPreview() {
     movie_img.setAttribute('alt', movie.title);
 
     divContainer.append(movie_img);
-    trendingPreview_movieList.appendChild(divContainer);
+    // trendingPreview_movieList.appendChild(divContainer);
     // console.log(movie.title)
   })
 }
@@ -512,6 +512,8 @@ async function getMovieById(id) {
   `;
 
   previewTriller.appendChild(div);
+
+
 }
 
 async function getMovieTrailer(id) {

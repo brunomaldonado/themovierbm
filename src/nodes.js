@@ -25,11 +25,12 @@ const headerTitle = document.querySelector('.header_title');
 /* ELEMENTS */
 const brandButton = document.getElementById('brandButton')
 const searchFormInput = document.querySelector('#searchForm input');
-const btnSearchForm = document.getElementById('btn_searchForm');
+// const btnSearchForm = document.getElementById('btn_searchForm');
 const searchBtn = document.querySelector('.search_btn');
 const cancelBtn = document.querySelector('.cancel_btn');
 const searchBox = document.querySelector('.search_box');
 const searchInput = document.querySelector('input')
+const btnOverlay = document.querySelector('.overlay_btn');
 const bannerButton = document.getElementById('bannerButton');
 const trendsButton = document.getElementById('trendsButton');
 const categories_list = document.getElementById('categories_list');

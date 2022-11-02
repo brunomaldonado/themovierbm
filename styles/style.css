@@ -48,7 +48,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   /* margin: 0 auto; */
   /* width: 100%; */
   padding-top: 1rem;
@@ -94,7 +94,6 @@ a {
 }
 
 
-
 .search_box {
   position: relative;
   height: 38px;
@@ -103,13 +102,14 @@ a {
   margin-right: 1rem;
 }
 
-/* .search_box.active {
+
+.search_box.active {
   position: absolute;
   right: 0;
   text-align: center;
   margin: 0 auto;
   width: 57vw;
-} */
+}
 
 .search_box input {
   height: 100%;
@@ -144,7 +144,8 @@ a {
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  z-index: 1;
+  /* z-index: 0;
+  display: none; */
 }
 
 .search_box .search_btn.active {
@@ -152,11 +153,49 @@ a {
   height: 34px;
   width: 34px;
   color: #fff;
-  background: yellowgreen;
+  background: #3057e6;
   line-height: 32px;
   font-size: 1.8rem;
   transform: rotateY(-50%) rotate(360deg);
+  z-index: 999;
 }
+
+.search_box .overlay_btn {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+  height: 36px;
+  width: 36px;
+  color: yellowgreen;
+  /* color: green; */
+  background: #f2f2f2;
+  line-height: 36px;
+  font-size: 1.8rem;
+  text-align: center;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.search_box .overlay_btn.active {
+  right: 2px;
+  height: 34px;
+  width: 34px;
+  color: #fff;
+  /* background-color: rgba(255, 255, 255, 0.1); */
+  background: #8593c5;
+  line-height: 32px;
+  font-size: 1.8rem;
+  /* z-index: -1; */
+  /* transform: rotateY(-20%) rotate(360deg); */
+}
+
+
+
 
 .search_box .cancel_btn {
   position: absolute;
@@ -176,7 +215,7 @@ a {
   outline: none;
   background: transparent;
   transition: all 0.5s 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  display: none;
+  /* display: none; */
 }
 .search_box .cancel_btn.active {
   right: 33px;
@@ -698,15 +737,22 @@ input[type="text"] {
   background: #021b79;
   border-radius: 10px;
   /* background: inherit; */
+  visibility: hidden;
+}
+.filePath_scrollContainer:hover::-webkit-scrollbar {
+  visibility: visible;
 }
 
 .filePath_scrollContainer::-webkit-scrollbar-thumb {
   height: 9px;
   background: rgba(247, 248, 250, 0.2);
   border-radius: 10px;
+  visibility: hidden;
   /* border-right: 2px solid #021b79; */
 }
-
+.filePath_scrollContainer:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
 
 .container_cast {
   margin-right: 0.7rem;
@@ -859,14 +905,17 @@ iframe{
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
-  margin-bottom: 1.25rem;
-
+  /* margin-bottom: 1.25rem; */
+  align-content: center;
 }
 
 .headerTop_container .related_moviesTitle h2{
   margin: 0;
 }
 
+.headerTop_container #categories_list::-webkit-scrollbar {
+  display: none;
+}
 /* .headerTop_container #categories_list {
 
 } */
@@ -976,12 +1025,10 @@ iframe{
 .btn_previous {
   left: 2.25rem;
   z-index: 1;
-
 }
 .btn_next {
   right: -1.7rem;
   z-index: 1;
-
 }
 
 .btn_previous:hover, .btn_next:hover {
@@ -1063,6 +1110,7 @@ iframe{
   box-shadow: 0 0 5px #bbb;
   border: none;
   border: 0.125px solid rgba(187, 187, 187, 0.634);
+  opacity: 20%;
 }
 
 .carousel_buttons {
@@ -1081,10 +1129,10 @@ iframe{
   box-shadow: 0 0 5px #bbb;
   border: none;
   border: 0.125px solid rgba(187, 187, 187, 0.634);
-
+  opacity: 20%;
 }
 
-.buttons:hover > i{
+.carousel_buttons:hover > i{
   transition: all 0.2s ease;
   color: #007aff;
 }
@@ -1125,18 +1173,11 @@ iframe{
   white-space: nowrap;
   scroll-snap-align: center;
   /* display: flex; */
-  margin: 1.5rem 0 0.5rem 0;
+  margin: 0.5rem 0 0.5rem 0;
   /* border: 2px solid red; */
   /* padding: 1.4rem 0 1.4rem 0; */
   overscroll-behavior-inline: contain;
 }
-
-.trendingPreview_movieList::-webkit-scrollbar {
-  /* display: none; */
-}
-/* .trendingPreview_movieList .movie_container {
-  display: inline-block;
-} */
 
 .trendingPreview_movieList > * {
   scroll-snap-align: start;
@@ -1146,15 +1187,23 @@ iframe{
   height: 9px;
   background: #021b79;
   border-radius: 10px;
-  /* background: inherit; */
+  visibility: hidden;
+}
+.trendingPreview_movieList:hover::-webkit-scrollbar{
+  visibility: visible;
 }
 
 .trendingPreview_movieList::-webkit-scrollbar-thumb {
   height: 9px;
   background: rgba(247, 248, 250, 0.2);
   border-radius: 10px;
+  visibility: hidden;
   /* border-right: 2px solid #021b79; */
 }
+.trendingPreview_movieList:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
 
 .movie_container {
   /* transition-duration:  300ms;
@@ -1345,10 +1394,10 @@ iframe{
 }
 
 .categoriesPreview_container {
-  /* border: 1px solid pink; */
   /* margin: 1.8rem 0 1.5rem 0; */
   margin-top: 1.8rem;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1rem;
+  /* border: 1px solid red; */
 }
 
 .categoriesPreview_title {
@@ -1358,7 +1407,6 @@ iframe{
 }
 
 .categoriesPreview_list {
-  /* margin: 1.5rem 0 2rem 0; */
   display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -1366,23 +1414,46 @@ iframe{
   scroll-snap-align: center;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
+  padding-bottom: 1rem;
 }
+
+.categoriesPreview_list > * {
+  scroll-snap-align: start;
+}
+
 .categoriesPreview_list::-webkit-scrollbar {
-  display: none;
+  height: 9px;
+  background: #021b79;
+  border-radius: 10px;
+  visibility: hidden;
+  /* display: none; */
 }
+.categoriesPreview_list:hover::-webkit-scrollbar {
+  visibility: visible;
+}
+
+/* .categoriesPreview_list::-webkit-scrollbar{
+  display: none;
+} */
+
+.categoriesPreview_list::-webkit-scrollbar-thumb {
+  height: 9px;
+  background: rgba(247, 248, 250, 0.2);
+  border-radius: 10px;
+  visibility: hidden;
+}
+.categoriesPreview_list:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
 .category_container {
   margin: 0.5rem 0 0.5rem 0;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   border-radius: 23px;
   background-color: #007aff;
   z-index: 99;
   cursor: pointer;
-  /* display: flex; */
 }
-
-/* .description_genres.on {
-  display: inline-block;
-} */
 
 .category_btn {
   outline: none;
@@ -1434,6 +1505,7 @@ iframe{
   padding: 0.4rem 0 0.4rem 0;
   text-transform: uppercase;
   font-weight: 700;
+
 }
 
 .mostPopularPreview_movieGrid {
@@ -1580,11 +1652,12 @@ iframe{
 
 .container_card .info {
   /* border: 2px solid pink; */
-  margin-left: 0.6rem;
+  margin-left: 1.5rem;
 }
 
 .container_card .info p {
   cursor: pointer;
+  line-height: 1.1;
 }
 
 .container_card .info span {
@@ -1622,6 +1695,7 @@ footer{
     /* display: flex; */
     grid-template-columns: auto 1fr;
     place-content: center;
+    align-items: center;
     /* grid-template-rows: 40px 40px; */
   }
   
@@ -1693,13 +1767,19 @@ footer{
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     margin-right: 1rem;
   } */
-  .search_box.active {
+  /* .search_box.active {
     position: absolute;
     right: 0;
     text-align: center;
     margin: 0 auto;
     width: 57vw;
-  }
+  } */
+  /* .categoriesPreview_list {
+    padding-bottom: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  } */
+
 }
 
 @media (min-width: 576px) {
@@ -1709,37 +1789,21 @@ footer{
   }
 
   .search_box {
-    /* border: 1px solid red; */
-    position: relative;
+    border: 1px solid red;
+    /* position: relative; */
     width: 37vw;
-    /* z-index: 1; */
-    /* display: block; */
+    z-index: 1;
+    display: block;
   }
 
-  /* .search_box .cancel_btn {
+  .search_box .cancel_btn {
     display: none;
-  } */
-
-
-  
-  /* #banner .description {
-    position: relative;
-    display: block;
   }
-   */
-  /* .meta {
-    margin-top: 0;
-    grid-column: 3/ 3;
-  }
-  .description1 {
-    display: block;
-  } */
 
-
-
-  /* .home_movies {
+  /* .categoriesPreview_list {
+    padding-bottom: 1rem;
     display: grid;
-    grid-template-columns: auto 220px;
+    grid-template-columns: repeat(3, 1fr);
   } */
 
   .mostPopularPreview_movieGrid {
@@ -1806,6 +1870,7 @@ footer{
   .related_movies {
     /* display: grid; */
     grid-template-columns: auto 33px 260px;
+
   }
 
   .related_movies .previewTriller {
