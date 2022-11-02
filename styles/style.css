@@ -103,13 +103,13 @@ a {
 }
 
 
-.search_box.active {
+/* .search_box.active {
   position: absolute;
   right: 0;
   text-align: center;
   margin: 0 auto;
   width: 57vw;
-}
+} */
 
 .search_box input {
   height: 100%;
@@ -1767,13 +1767,13 @@ footer{
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     margin-right: 1rem;
   } */
-  /* .search_box.active {
+  .search_box.active {
     position: absolute;
     right: 0;
     text-align: center;
     margin: 0 auto;
     width: 57vw;
-  } */
+  }
   /* .categoriesPreview_list {
     padding-bottom: 1rem;
     display: grid;

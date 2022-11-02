@@ -31,10 +31,10 @@ searchBtn.addEventListener('click', () => {
   //   window.scrollTo(0, 0);
   // }
 
-  if(searchInput.value === "") {
+  if(location.hash !== "undefined") {
     console.log("input an search")
-    // getMostPopular();
-    headerTitle.innerText = `No results found`;
+    getMostPopular();
+    headerTitle.innerText = `Search results found`;
     window.scrollTo(0, 0);
   } else {
     console.log("your resutls")
@@ -47,7 +47,7 @@ btnOverlay.addEventListener('click', () => {
   searchBox.classList.add('active');
   searchInput.classList.add('active');
   searchBtn.style.display = "block";
-  // searchBtn.classList.add('active');
+  searchBtn.classList.add('active');
   cancelBtn.classList.add('active');
   cancelBtn.style.display = "block";
   btnOverlay.style.display = 'none';
@@ -188,7 +188,7 @@ function tvDetailsPage() {
 function searchPage() {
   bannerSliceSection.classList.remove("inactive");
   movieDetailSection.classList.add("inactive");
-  // trendingPreviewSection.classList.add("inactive");
+  trendingPreviewSection.classList.add("inactive");
   categoriesPreviewSection.classList.remove("inactive"); //solect reference about the browser.
   homeMoviesSection.classList.remove("inactive")
   relatedMovies.classList.add("inactive");
@@ -199,12 +199,12 @@ function searchPage() {
 
   
   // headerTitle.innerText = categoryName;
-  // headerTitle.innerText = "Search results found";
+  headerTitle.innerText = "Search results found";
 
   // console.log("Search!!");
-  // getCategoriesPreview();
-  // getUpcomingMoviesPreview();
-  // getNowPlayingMoviesPreview();
+  getCategoriesPreview();
+  getUpcomingMoviesPreview();
+  getNowPlayingMoviesPreview();
 }
 
 function trendsPage() {
