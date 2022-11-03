@@ -7,10 +7,7 @@ brandButton.addEventListener('click', () => {
   window.location.reload();
   // console.log("brandButton return to home");
 })
-// searchBtn.onClick = () => {
-//   searchBox.classList.add('active');
-//   console.log("click")
-// }
+
 searchBtn.addEventListener('click', () => {
   searchBox.classList.add('active');
   searchInput.classList.add('active');
@@ -18,28 +15,33 @@ searchBtn.addEventListener('click', () => {
   cancelBtn.classList.add('active');
   // cancelBtn.classList.remove('active');
 
-  const s = location.hash = "#search=" + searchInput.value.trim();
+  const inputData = location.hash = "#search=" + searchInput.value.trim();
   searchInput.value = "";
-  
-  // window.scroll({
-  //   top: 573,
-  //   behavior: 'smooth'
-  // })
 
-  // if(location.hash !== "undefined") {
-  //   getMostPopular();
+  const query = inputData;
+  const [_, input] = query.split('=');
+
+  // console.log("search input", input)
+
+  if (input === '') {
+    getMostPopular()
+    // console.log("empty string")    
+  } 
+
+
+  // console.log("input data", inputData)
+
+  // if(inputData !== "") {
+  //   const query = inputData;
+  //   const [_, input] = query.split('=');
+
+  //   console.log("search input", input)
+  //   getMostPopular()
+  //   headerTitle.innerText = `No results found` ;
   //   window.scrollTo(0, 0);
+  // } else {
+  //   headerTitle.innerText = `Search results found ${input}`;
   // }
-
-  if(location.hash !== "undefined") {
-    console.log("input an search")
-    getMostPopular();
-    headerTitle.innerText = `Search results found`;
-    window.scrollTo(0, 0);
-  } else {
-    console.log("your resutls")
-    headerTitle.innerText = "Search results found";
-  }
   // console.log("search search addEventListener", searchFormInput.value);
 })
 
@@ -65,7 +67,8 @@ window.addEventListener('scroll', () => {
       btnOverlay.style.display = 'block';
       cancelBtn.classList.remove('active');
       cancelBtn.style.display = "none";
-  } else {
+      searchInput.innerText = '';
+} else {
       // toTop.classList.remove('active');
   }
 })
@@ -76,12 +79,8 @@ cancelBtn.addEventListener('click', () => {
   searchBtn.classList.remove('active');
   cancelBtn.classList.remove('active');
   btnOverlay.style.display = 'block';
+  searchInput.innerText = '';
 })
-
-
-// bannerButton.addEventListener('click', () => {
-//   location.hash = "#movie=";
-// })
 
 trendsButton.addEventListener('click', () => {
   location.hash = "#trends=";
@@ -158,9 +157,6 @@ function movieDetailsPage() {
   homeMoviesSection.classList.add("inactive")
   relatedMovies.classList.remove("inactive");
   
-  // upcomingMoviesPreview.classList.add('active');
-  // recomendedMoviesPreview.classList.add('active');
-
   window.scrollTo(0, 0);
 
   const [_, movieTvId] = location.hash.split('=');
@@ -176,9 +172,6 @@ function tvDetailsPage() {
   homeMoviesSection.classList.add("inactive")
   relatedMovies.classList.remove("inactive");
   
-  // upcomingMoviesPreview.classList.add('active');
-  // recomendedMoviesPreview.classList.add('active');
-
   window.scrollTo(0, 0);
 
   const [_, tvId] = location.hash.split('=');
@@ -195,11 +188,23 @@ function searchPage() {
   
   // ['#search', 'suits']
   const [_, query] = location.hash.split('=');
+  // console.log("query", query);
   getMoviesBySearch(query.replaceAll("%20", "+"));
 
+  if(_ !== "") {
+    // console.log("query_search", query)
+    headerTitle.innerText = `Search results found`;
+    window.scrollTo(0, 0);
+  } else {
+    headerTitle.innerText = `No results found`;
+  }
+
+  // console.log("message", query.message);
   
+
+
   // headerTitle.innerText = categoryName;
-  headerTitle.innerText = "Search results found";
+  // headerTitle.innerText = "Search results found";
 
   // console.log("Search!!");
   getCategoriesPreview();
@@ -224,5 +229,4 @@ function trendsPage() {
   getTrendingMovies();
   getUpcomingMoviesPreview();
   getNowPlayingMoviesPreview();
-  // console.log("TRENDS!!")
 }

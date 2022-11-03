@@ -77,7 +77,7 @@ async function getPopularBannerPreviews() {
   // console.log("request", request.data.results);
   let original = request.data.results[Math.floor(Math.random() * request.data.results.length)]
   let {data} = await getMovieInfo(original.id, 'movie');
-  console.log("get Info", data);
+  // console.log("get Info", data);
 
   const title = document.querySelector('.title');
   const subTitle = document.querySelector('.subTitle');
@@ -89,6 +89,7 @@ async function getPopularBannerPreviews() {
 
   const bg_image = document.querySelector('.objf');
   const banner_img = document.createElement('img');
+  banner_img.className = 'clickP'
   banner_img.setAttribute('src', 'http://image.tmdb.org/t/p/original' + data.backdrop_path);
   banner_img.setAttribute('alt', data.title);
   bg_image.appendChild(banner_img);
@@ -96,7 +97,7 @@ async function getPopularBannerPreviews() {
   // document.querySelector('.banner_country').innerHTML = `${data}`
   document.querySelector('.banner_language').innerText= `${data.original_language}`
   document.querySelector('.banner_date').innerText= `${data.release_date}`
-  document.querySelector('.banner_runtime').innerText= `${data.runtime}min`
+  document.querySelector('.banner_runtime').innerText= `${data.runtime}min`;
   const getGenres = []
   const getGenre = data.genres;
   // console.log('get', getGenre)
@@ -379,6 +380,7 @@ async function getMoviesBySearch(query) {
  const firstData = request.data.results;
  const secondData = data.results;  
 //  console.log("person", person)
+//  console.log("secon data", secondData)
 
   const getArray = firstData.concat(secondData);
   // console.log("Array", getArray);
@@ -391,7 +393,14 @@ async function getMoviesBySearch(query) {
 
   const randomData = _randomslice(getArray, 20);
 
-leftCreateMovies(secondData, mostPopularPreviewGrid)
+  // console.log("randomData", query)
+  // if (query) {
+  //   // getMostPopular();
+  //   headerTitle.innerText = `No results were found with the "${query}", try another word...`;
+  // } else {
+  //   console.log("discover");
+  // }
+  leftCreateMovies(secondData, mostPopularPreviewGrid)
 }
 
 async function getTrendingMovies() {
@@ -457,10 +466,13 @@ async function getMovieById(id) {
     categoryType_inside.textContent = `${genres.join(', ')}.`;
   }
 
-  console.log("movie", dataMovie);
+  // console.log("movie", dataMovie);
   movieDetailTitle.textContent = `${dataMovie?.name || dataMovie?.original_title || dataMovie?.title}`
   movieDetailSubTitle.textContent = dataMovie.tagline || dataMovie.original_name;
   vote_progress.innerHTML = `${dataMovie.vote_average.toFixed(1) * 10}%`;
+  document.querySelector('.detail_runtime').innerText= `${dataMovie.runtime}min`;
+  const [date, _] = dataMovie.release_date.split('-');
+  document.querySelector('.detail_date').innerText = date;
   detailPoster_path.setAttribute('src', dataMovie.poster_path ? "http://image.tmdb.org/t/p/original" + dataMovie.poster_path : unavailable);
   detailBackdrop_path.setAttribute('src', dataMovie.backdrop_path ? "http://image.tmdb.org/t/p/original" + dataMovie.backdrop_path : "http://image.tmdb.org/t/p/original" + dataMovie.poster_path );
   detailOverview.textContent = truncate(dataMovie.overview, 280);
