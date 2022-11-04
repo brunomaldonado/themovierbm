@@ -679,6 +679,8 @@ input[type="text"] {
   height: 100%;
   border: none;
   position: relative;
+  cursor: pointer;
+  pointer-events: none;
 }
 
 .billycontainer_img .billy_img {
@@ -689,6 +691,7 @@ input[type="text"] {
   pointer-events: auto;
   border: none;
   outline: none;
+  
 }
 
 .perfil_info{
@@ -1021,7 +1024,7 @@ iframe{
   display: inline-block;
   cursor: pointer;
   transform-origin: center left;
-
+  /* border: 1px solid yellowgreen; */
 }
 
 .movie_container .movie_img{
@@ -1029,6 +1032,7 @@ iframe{
   width: auto;
   max-height: 270px;
   border-radius: 5px;
+  /* border: 2px solid red; */
 }
 
 .movie_container p {
@@ -1417,6 +1421,136 @@ iframe{
   cursor: pointer;
 }
 
+
+.profile_container {
+  margin-top: calc(1.25vw + 1.25vh + 1.8rem);
+  display: flex;  
+  flex-direction: column;
+}
+
+.profile_container .profile_poster {
+  width: 100%;
+  /* max-height: 240px; */
+  object-fit: contain;
+  float: left;
+  border-radius: 3px;
+  margin-right: 1.8rem;
+  margin-bottom: 1rem;
+}
+.profile_description h2 {
+  font-size: 3rem;
+  margin-top: 1.9rem;
+  /* margin-bottom: 1.5rem; */
+  line-height: 1;
+}
+.profile_description span {
+  font-size: 2rem;
+  color: #b6cdf0;
+}
+.profile_description p {
+  text-align: justify;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  color: #8da0bc;
+  /* display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden; */
+}
+
+.also_known {
+  position: relative;
+}
+
+.profile_description .also_known {
+  color: #b6cdf0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* margin-top: 1rem; */
+  margin-bottom: 1.5rem;
+  /* line-height: 1.2; */
+}
+
+#span::before {
+  content: "Read More ...";
+  /* padding: 0 5px 0 4px; */
+  /* content: "Read More"; */
+  font-size: 1.4rem;
+  cursor: pointer;
+  border: 1px dashed #8da0bc;
+  background-color: #080f28;
+  color: #fff;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  transition-delay: 8s;
+}
+
+.profile_container.active .also_known{
+  display: block;
+}
+.profile_container.active #span::before{
+  content: "Show less";
+  position: relative;
+  display: none;
+}
+
+
+.film_staring .films_movies {
+  font-size: 1.8rem;
+  margin-top: 1.5rem;
+  font-weight: 700;
+}
+
+.fimls_staringList {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-snap-align: center;
+  margin: 0.5rem 0 0.5rem 0;
+  overscroll-behavior-inline: contain;
+}
+
+.fimls_staringList > * {
+  scroll-snap-align: start;
+}
+
+.fimls_staringList::-webkit-scrollbar {
+  height: 9px;
+  background: #021b79;
+  border-radius: 10px;
+  visibility: hidden;
+}
+.fimls_staringList:hover::-webkit-scrollbar{
+  visibility: visible;
+}
+
+.fimls_staringList::-webkit-scrollbar-thumb {
+  height: 9px;
+  background: rgba(247, 248, 250, 0.2);
+  border-radius: 10px;
+  visibility: hidden;
+}
+.fimls_staringList:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+.fimls_staringList .movie_container {
+  width: 185px;
+  margin-bottom: 0;
+}
+
+.fimls_staringList .movie_container .movie_img {
+  object-fit: contain;
+}
+
 footer{
   padding: 2rem;
   display: flex;
@@ -1454,6 +1588,21 @@ footer{
   }
 }
 
+@media (min-width: 500px) {
+  .profile_container .profile_poster {
+    width: 45%;
+    max-height: auto;
+    object-fit: contain;
+    float: left;
+    border-radius: 3px;
+    margin-right: 1.5rem;
+  }
+
+  /* .profile_description h2 {
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  } */
+}
 
 @media (min-width: 540px) {
   main {
@@ -1472,6 +1621,11 @@ footer{
   .meta span:nth-child(3) {
     color: yellow;
   }
+
+.profile_container .profile_poster {
+  margin-right: 2.5rem;
+}
+
 }
 
 @media (max-width: 575px) {
@@ -1481,7 +1635,9 @@ footer{
     text-align: center;
     margin: 0 auto;
     width: 57vw;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
+
 }
 
 @media (min-width: 576px) {
@@ -1496,6 +1652,7 @@ footer{
     width: 37vw;
     z-index: 1;
     display: block;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .search_box .cancel_btn {
@@ -1619,6 +1776,15 @@ footer{
   .carousel_indicators .glider-dot.active{
     opacity: 1;
     background: #fff;
+  }
+
+  .profile_container .profile_poster {
+    width: auto;
+    max-height: 450px;
+    object-fit: contain;
+    float: left;
+    border-radius: 3px;
+    margin-right: 2.2rem;
   }
 
 }

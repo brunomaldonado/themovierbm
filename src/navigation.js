@@ -1,6 +1,10 @@
 window.addEventListener("DOMContentLoaded", navigator, false)
 window.addEventListener("hashchange", navigator, false)
 
+// https://www.linkpicture.com/q/screencapture-localhost-5501-2022-11-02-19_04_56.png
+// https://ibb.co/nzTLnbk
+// https://ibb.co/7KN4gpj
+
 brandButton.addEventListener('click', () => {
   location.hash = "#home";
   homePage();
@@ -104,6 +108,8 @@ function navigator() {
     tvDetailsPage()
   } else if (location.hash.startsWith("#category=")) {
     categoriesPage()
+  } else if (location.hash.startsWith("#profile=")) {
+    profilePage()
   } else {
     homePage()
   }
@@ -118,6 +124,7 @@ function homePage() {
   // headerTitle.innerText = "Most Popular";
   homeMoviesSection.classList.remove("inactive")
   relatedMovies.classList.add("inactive");
+  profileInformation.classList.add("inactive");
   
   // getPopularBannerPreviews();
   getTrendingMoviesPreview();
@@ -134,6 +141,7 @@ function categoriesPage() {
   categoriesPreviewSection.classList.remove("inactive");
   homeMoviesSection.classList.remove("inactive")
   relatedMovies.classList.add("inactive");
+  profileInformation.classList.add("inactive");
   console.log("Categories!!")
 
   //['#category', 'id-name']
@@ -156,6 +164,7 @@ function movieDetailsPage() {
   bannerSliceSection.classList.add("inactive");
   homeMoviesSection.classList.add("inactive")
   relatedMovies.classList.remove("inactive");
+  profileInformation.classList.add("inactive");
   
   window.scrollTo(0, 0);
 
@@ -171,6 +180,7 @@ function tvDetailsPage() {
   bannerSliceSection.classList.add("inactive");
   homeMoviesSection.classList.add("inactive")
   relatedMovies.classList.remove("inactive");
+  profileInformation.classList.add("inactive");
   
   window.scrollTo(0, 0);
 
@@ -185,6 +195,7 @@ function searchPage() {
   categoriesPreviewSection.classList.remove("inactive"); //solect reference about the browser.
   homeMoviesSection.classList.remove("inactive")
   relatedMovies.classList.add("inactive");
+  profileInformation.classList.add("inactive");
   
   // ['#search', 'suits']
   const [_, query] = location.hash.split('=');
@@ -220,7 +231,7 @@ function trendsPage() {
   headerTitle.innerText = "Trendings";
   homeMoviesSection.classList.remove("inactive")
   relatedMovies.classList.add("inactive");
-  
+  profileInformation.classList.add("inactive");
 
   // const [_, movieTvId] = location.hash.split('=');
   // getMovTvById(movieTvId);
@@ -230,3 +241,22 @@ function trendsPage() {
   getUpcomingMoviesPreview();
   getNowPlayingMoviesPreview();
 }
+
+function profilePage() {
+  movieDetailSection.classList.add("inactive");
+  bannerSliceSection.classList.add("inactive");
+  trendingPreviewSection.classList.add("inactive");
+  categoriesPreviewSection.classList.add("inactive");
+  bannerSliceSection.classList.add("inactive");
+  homeMoviesSection.classList.add("inactive")
+  relatedMovies.classList.add("inactive");
+  profileInformation.classList.remove("inactive");
+  
+  window.scrollTo(0, 0);
+
+  const [_, profileId] = location.hash.split('=');
+  getPerson(profileId);
+  // console.log("profile");
+  
+}
+

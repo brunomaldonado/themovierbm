@@ -4,6 +4,7 @@ const movieDetailSection = document.getElementById('movieDetail')
 const trendingPreviewSection = document.getElementById('trendingPreview');
 const categoriesPreviewSection = document.getElementById('categoriesPreview');
 const homeMoviesSection = document.querySelector('.home_movies');
+const profileInformation = document.querySelector('.profile_information');
 
 /* ARTICLE */
 const headerContent = document.querySelector('.TPost');

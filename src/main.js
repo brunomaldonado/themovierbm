@@ -553,17 +553,11 @@ async function getTvById(id) {
   getBillyCast(id);
 }
 
+
 async function getBillyCast(id) {
   // const {data} = await api(`movie/${id}/credits`)
-  const {data} = await api(`movie/${id}/credits`)
+  const {data} = await api(`movie/${id}/credits`);
   // console.log("data cast", data.cast);
-
-  // const dataCast = data.cast;
-  // dataCast.forEach((cast) => {
-  //   console.log("getId", cast.id);
-  //   getImages(cast.id);
-  // })
-
   billyCast = data.cast;
 
   const filePath_scrollContainer = document.querySelector('.filePath_scrollContainer');
@@ -576,16 +570,13 @@ async function getBillyCast(id) {
   } else {
     document.querySelector('.billyCast_title').innerHTML = "Top Billy Cast";
     billyCast.forEach(cast => {
-      // console.log("getId", cast.cast_id);
-      
-      // console.log("info profile path", getPerson(cast.id));
-      
+      // console.log("getId", cast);
       const divContainerCast = document.createElement('div')
       divContainerCast.className = 'container_cast'
       const divContainerImg = document.createElement('div');
       divContainerImg.addEventListener('click', (event) =>{
-        console.log("file path click");
-
+        location.hash = `#profile=${cast.id}`
+        getPerson(cast.id);   
       })
       divContainerImg.className = 'billycontainer_img'
       const cast_img = document.createElement('img');
@@ -607,15 +598,16 @@ async function getBillyCast(id) {
       filePath_scrollContainer.append(divContainerCast);
     })
   }
+ 
 }
 
 async function getRelatedMoviesId(id) {
   // const {data} = await api(`movie/${id}/similar`);
   const {data} = await api(`movie/${id}/recommendations`);
-  const similarMov = data.results;
-  // console.log("Similar movies", similarMov);
+  const relatedMov = data.results;
+  // console.log("Related movies", relatedMov);
 
-  leftCreateMovies(similarMov, relatedMoviesPreviewGrid)
+  leftCreateMovies(relatedMov, relatedMoviesPreviewGrid)
 }
 
 async function getImages(id) {
@@ -775,7 +767,100 @@ window.addEventListener("DOMContentLoaded", function() {
 
 async function getPerson(id) {
   const {data} = await api(`person/${id}?append_to_response=images`);
-  console.log("information person", data)
+  console.log("information person", data);
+  // console.log("name", data.name);
+  // console.log("biography", data.biography);
+  // console.log("biography", data.profile_path);
+  console.log("also known as", data.also_known_as);
+  const knownAs = [];
+ 
+  const also_known_as = data.also_known_as;
+  also_known_as.forEach(names => knownAs.push(names));
+  // console.log("names", knownAs.toString());
+
+  const request = await api(`person/${id}/movie_credits`);
+  const filmsStaring = request.data.cast;
+  // console.log("films movies", filmsStaring);
+
+  const profileContainer = document.querySelector('.profile_container');
+  const profileDescription = document.querySelector('.profile_description');
+  profileDescription.innerHTML = "";
+  const filmContainer = document.querySelector('.film_staring');
+  const fimlsStaringList = document.querySelector('.fimls_staringList');
+  fimlsStaringList.innerHTML = "";
+  // profileContainer.innerHTML = "";
+
+
+  const img = document.createElement('img');
+  img.className = 'profile_poster';
+  img.src = data.profile_path ? "http://image.tmdb.org/t/p/original" + data.profile_path : unavailable;
+  // console.log("url", img.src);
+  // let src = document.querySelector('.profile_container');
+  // src.appendChild(img);
+  const name = document.createElement('h2')
+  name.innerText = `${data.name} `
+  const birthday = document.createElement('span');
+  if(data.birthday == null) {
+    birthday.innerText = "";
+  } else {
+    birthday.innerText = `(${data.birthday})`;
+  }
+  const alsoKnownAs = document.createElement('p');
+  alsoKnownAs.className = 'also_known';
+  // alsoKnownAs.innerText = `${knownAs.join(', ')}.`;
+  if(knownAs.length < 3) {
+    console.log("none");
+    document.querySelector('.profile_container').classList.toggle('active');
+    alsoKnownAs.innerText = "";
+  } else {
+    document.querySelector('.profile_container').classList.remove('active');
+    alsoKnownAs.innerText = `${knownAs.join(', ')}.`;
+  }
+
+  // const alsoKnownAs = document.createElement('p');
+  // alsoKnownAs.className = 'also_known';
+  // alsoKnownAs.innerText = `${knownAs.join(', ')}.`;
+  const placeOfBirth = document.createElement('p');
+  placeOfBirth.innerText = data.place_of_birth;
+  const biography = document.createElement('p');
+  biography.innerText = data.biography;
+  const span = document.createElement('span');
+  span.id = 'span'
+  const moviesStaring = document.querySelector('.films_movies');
+  moviesStaring.innerText = `${data.name} movies`;
+  
+  alsoKnownAs.appendChild(span);
+  name.appendChild(birthday);
+  profileDescription.append(img, name, alsoKnownAs, placeOfBirth, biography)
+  filmContainer.append(fimlsStaringList);
+  // const fimls_staringList = document.querySelector('.fimls_staringList');
+  // fimls_staringList.innerHTML = "";
+
+  document.getElementById('span').addEventListener('click', function(){
+    console.log("click")
+    document.querySelector('.profile_container').classList.toggle('active');
+  })
+
+  filmsStaring.forEach(movie => {
+    const divContainer = document.createElement('div')
+    divContainer.addEventListener('click', () => {
+      location.hash = `#movie=${movie.id}`;
+      // console.log("click poster trending movie home")
+    })
+    divContainer.className = 'movie_container'
+    const movie_img = document.createElement('img');
+    movie_img.className = 'movie_img'
+    movie_img.setAttribute('src', movie.poster_path ? "http://image.tmdb.org/t/p/original" + movie.poster_path : unavailable);
+    movie_img.setAttribute('alt', movie.title);
+
+    divContainer.appendChild(movie_img);
+    fimlsStaringList.appendChild(divContainer);
+    // console.log(movie.title)
+  })
+
+  profileContainer.append(profileDescription, filmContainer);
 }
+
+
 
 getPopularBannerPreviews();
