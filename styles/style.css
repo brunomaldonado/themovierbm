@@ -1437,16 +1437,36 @@ iframe{
   margin-right: 1.8rem;
   margin-bottom: 1rem;
 }
-.profile_description h2 {
-  font-size: 3rem;
+
+.profile_description h1{
+  font-size: 2.8rem;
+  line-height: 1.1;
+  /* white-space: nowrap; */
+  /* margin-bottom: 1.2rem; */
+  /* display: flex;
+  flex-direction: column; */
+  margin-bottom: 0.8rem;
+}
+
+.profile_description .profile_birthday{
+  /* width: 100%; */
+  color: #b6cdf0;
+  font-size: 2rem;
+  line-height: 1;
+  /* margin-left: 1rem; */
+  /* white-space: wrap; */
+}
+/* .profile_description h2 {
+  font-size: 3rem;z
   margin-top: 1.9rem;
-  /* margin-bottom: 1.5rem; */
   line-height: 1;
 }
-.profile_description span {
-  font-size: 2rem;
+.profile_description h6 {
   color: #b6cdf0;
 }
+.profile_description span {
+  color: #b6cdf0;
+} */
 .profile_description p {
   text-align: justify;
   font-size: 1.5rem;
@@ -1459,38 +1479,45 @@ iframe{
   overflow: hidden; */
 }
 
-.also_known {
-  position: relative;
-}
-
 .profile_description .also_known {
+  position: relative;
   color: #b6cdf0;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  /* margin-top: 1rem; */
-  margin-bottom: 1.5rem;
+  /* margin-top: 2rem; */
+  /* margin-bottom: 1.5rem; */
   /* line-height: 1.2; */
 }
 
-#span::before {
+.also_known #span::before {
+  width: 100%;
   content: "Read More ...";
-  /* padding: 0 5px 0 4px; */
+  /* padding: 0px 4px 0 6px; */
   /* content: "Read More"; */
-  font-size: 1.4rem;
-  cursor: pointer;
-  border: 1px dashed #8da0bc;
+  font-size: 1.5rem;
+  /* border: 1px dashed #bdc7e8; */
   background-color: #080f28;
-  color: #fff;
+  color: #0d79ed;
   z-index: 999;
   position: absolute;
   top: 0;
-  right: 0;
-  transition-duration: 0.5s;
-  transition-timing-function: linear;
-  transition-delay: 8s;
+  left: 50%;
+  cursor: pointer;
+  padding-left: 1.2rem;
+  /* margin-left: 0.5rem; */
+  /* padding: 5px 0px 0 0; */
+  /* line-height: 1; */
 }
+
+/* .also_known #span:hover{
+  content: "...";
+  cursor: pointer;
+  color: #f2f2f2;
+  transform: scale(1.2);
+  z-index: 20;
+} */
 
 .profile_container.active .also_known{
   display: block;
@@ -1597,11 +1624,6 @@ footer{
     border-radius: 3px;
     margin-right: 1.5rem;
   }
-
-  /* .profile_description h2 {
-    line-height: 1;
-    margin-bottom: 1.5rem;
-  } */
 }
 
 @media (min-width: 540px) {
@@ -1622,9 +1644,9 @@ footer{
     color: yellow;
   }
 
-.profile_container .profile_poster {
-  margin-right: 2.5rem;
-}
+  .profile_container .profile_poster {
+    margin-right: 2.5rem;
+  }
 
 }
 
@@ -1870,4 +1892,5 @@ footer{
     display: grid;
     grid-template-columns:  repeat(5, 1fr);
   }
+
 }

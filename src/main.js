@@ -797,9 +797,15 @@ async function getPerson(id) {
   // console.log("url", img.src);
   // let src = document.querySelector('.profile_container');
   // src.appendChild(img);
-  const name = document.createElement('h2')
-  name.innerText = `${data.name} `
+  // const profileTitle = document.createElement('div');
+  // profileTitle.className = 'profile_title'
+ 
+
+  const name = document.createElement('h1')
+  name.className = 'profile_name';
+  name.innerText = data.name;
   const birthday = document.createElement('span');
+  birthday.className = 'profile_birthday'
   if(data.birthday == null) {
     birthday.innerText = "";
   } else {
@@ -817,9 +823,7 @@ async function getPerson(id) {
     alsoKnownAs.innerText = `${knownAs.join(', ')}.`;
   }
 
-  // const alsoKnownAs = document.createElement('p');
-  // alsoKnownAs.className = 'also_known';
-  // alsoKnownAs.innerText = `${knownAs.join(', ')}.`;
+
   const placeOfBirth = document.createElement('p');
   placeOfBirth.innerText = data.place_of_birth;
   const biography = document.createElement('p');
@@ -829,8 +833,9 @@ async function getPerson(id) {
   const moviesStaring = document.querySelector('.films_movies');
   moviesStaring.innerText = `${data.name} movies`;
   
+  // name.appendChild(birthday);
+  // profileTitle.append(name, birthday);
   alsoKnownAs.appendChild(span);
-  name.appendChild(birthday);
   profileDescription.append(img, name, alsoKnownAs, placeOfBirth, biography)
   filmContainer.append(fimlsStaringList);
   // const fimls_staringList = document.querySelector('.fimls_staringList');
