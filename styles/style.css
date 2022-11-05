@@ -1487,7 +1487,7 @@ iframe{
   -webkit-box-orient: vertical;
   overflow: hidden;
   /* margin-top: 2rem; */
-  /* margin-bottom: 1.5rem; */
+  margin-bottom: 1.5rem;
   /* line-height: 1.2; */
 }
 
@@ -1807,6 +1807,14 @@ footer{
     float: left;
     border-radius: 3px;
     margin-right: 2.2rem;
+  }
+
+  .also_known #span::before {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    cursor: pointer;
+    padding-left: 1.2rem;
   }
 
 }
