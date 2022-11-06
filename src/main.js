@@ -771,9 +771,8 @@ async function getPerson(id) {
   // console.log("name", data.name);
   // console.log("biography", data.biography);
   // console.log("biography", data.profile_path);
-  console.log("also known as", data.also_known_as);
+  // console.log("also known as", data.also_known_as);
   const knownAs = [];
- 
   const also_known_as = data.also_known_as;
   also_known_as.forEach(names => knownAs.push(names));
   // console.log("names", knownAs.toString());
@@ -788,18 +787,26 @@ async function getPerson(id) {
   const filmContainer = document.querySelector('.film_staring');
   const fimlsStaringList = document.querySelector('.fimls_staringList');
   fimlsStaringList.innerHTML = "";
-  // profileContainer.innerHTML = "";
-
-
+  
+  const slidesImages = document.createElement('div');
+  slidesImages.className = 'slideshow_container';
+  // const spanClose = document.createElement('span');
+  // spanClose.innerText = 'X'
+  // spanClose.className = 'btn_close';
+  const buttonsSlide = document.createElement('div');
+  buttonsSlide.className = 'buttons_slide'
+  const btnPrevious = document.createElement('button');
+  // btnPrevious.innerText = 'prev'
+  btnPrevious.className = 'prev'
+  const btnNext = document.createElement('button')
+  // btnNext.innerText = 'next'
+  btnNext.className = 'next'
+  buttonsSlide.append(btnPrevious, btnNext);
+  const carouselSlide = document.createElement('div')
+  carouselSlide.className = 'profile_carouselSlide'
   const img = document.createElement('img');
   img.className = 'profile_poster';
   img.src = data.profile_path ? "http://image.tmdb.org/t/p/original" + data.profile_path : unavailable;
-  // console.log("url", img.src);
-  // let src = document.querySelector('.profile_container');
-  // src.appendChild(img);
-  // const profileTitle = document.createElement('div');
-  // profileTitle.className = 'profile_title'
- 
 
   const name = document.createElement('h1')
   name.className = 'profile_name';
@@ -815,7 +822,7 @@ async function getPerson(id) {
   alsoKnownAs.className = 'also_known';
   // alsoKnownAs.innerText = `${knownAs.join(', ')}.`;
   if(knownAs.length < 3) {
-    console.log("none");
+    // console.log("none");
     document.querySelector('.profile_container').classList.toggle('active');
     alsoKnownAs.innerText = "";
   } else {
@@ -823,6 +830,9 @@ async function getPerson(id) {
     alsoKnownAs.innerText = `${knownAs.join(', ')}.`;
   }
 
+  slidesImages.append(buttonsSlide, carouselSlide, img)
+  // slidesImages.append(btnPrevious, carouselSlide, btnNext, img)
+  // slidesImages.append(buttonsSlide, img)
 
   const placeOfBirth = document.createElement('p');
   placeOfBirth.innerText = data.place_of_birth;
@@ -836,7 +846,7 @@ async function getPerson(id) {
   // name.appendChild(birthday);
   // profileTitle.append(name, birthday);
   alsoKnownAs.appendChild(span);
-  profileDescription.append(img, name, alsoKnownAs, placeOfBirth, biography)
+  profileDescription.append(slidesImages, name, alsoKnownAs, placeOfBirth, biography)
   filmContainer.append(fimlsStaringList);
   // const fimls_staringList = document.querySelector('.fimls_staringList');
   // fimls_staringList.innerHTML = "";
@@ -861,9 +871,65 @@ async function getPerson(id) {
     divContainer.appendChild(movie_img);
     fimlsStaringList.appendChild(divContainer);
     // console.log(movie.title)
+
   })
 
   profileContainer.append(profileDescription, filmContainer);
+
+  const getImagesProfile = data.images.profiles;
+  console.log(getImagesProfile)
+  // if(getImagesProfile.length > 2) {
+  //   console.log("+++++++")
+  //   document.querySelector('.slideshow_container').classList.remove('active');
+  // } else {
+  //   console.log("------")
+  //   document.querySelector('.slideshow_container').classList.add('active');
+  // }
+
+  const profile_carouselSlide = document.querySelector('.profile_carouselSlide')
+
+  let counter = 0;
+  const container = document.querySelector('.slideshow_container');
+  // const carouselImg_node = document.getElementsByClassName('slide')
+  // const img_slideshow = document.querySelector('.slideshow_container img')
+
+  getImagesProfile.forEach((file) => {
+    // console.log("file", file)
+    const div = document.createElement('div')
+    div.className = 'slide';
+    const file_img = document.createElement('img');
+    // file_img.className = 'tns-item tns-slide-cloned'
+    file_img.className = 'profile_poster'
+    file_img.setAttribute('src', file.file_path ? `${img_original}/${file.file_path}` || no_image_holder : no_image_holder);
+    div.appendChild(file_img);
+    profile_carouselSlide.append(div);
+  })
+
+  container.addEventListener('click', function(event) {
+    let prev = container.querySelector('.buttons_slide .prev');
+        next = container.querySelector('.buttons_slide .next');
+        // img = container.querySelector('img');
+        tgt = event.target;
+    if (tgt === prev) {
+      console.log("click previous");
+      if (counter > 0) {
+        img.src = `${img_original}${getImagesProfile[counter - 1].file_path}`;
+        counter--;
+      } else {
+        img.src = `${img_original}${getImagesProfile[getImagesProfile.length - 1].file_path}`;
+        counter = getImagesProfile.length - 1;
+      }
+    } else if(tgt === next) {
+      console.log("click next");
+      if(counter < getImagesProfile.length - 1) {
+        img.src = `${img_original}${getImagesProfile[counter + 1].file_path}`;
+        counter++;
+      } else {
+        img.src = `${img_original}${getImagesProfile[0].file_path}`;
+        counter = 0;
+      }
+    }
+  })
 }
 
 
