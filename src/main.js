@@ -141,19 +141,19 @@ async function getTrendingMoviesPreview() {
   trendingPreview_movieList.innerHTML = "";
 
   trending.forEach(movie => {
-    const divContainer = document.createElement('div')
-    divContainer.addEventListener('click', () => {
+    const container = document.createElement('div')
+    container.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`;
-      console.log("click poster trending movie home")
+      // console.log("click poster trending movie home")
     })
-    divContainer.className = 'movie_container'
-    const movie_img = document.createElement('img');
-    movie_img.className = 'movie_img'
-    movie_img.setAttribute('src', 'http://image.tmdb.org/t/p/original' + movie.poster_path);
-    movie_img.setAttribute('alt', movie.title);
+    container.className = 'container_poster'
+    const img = document.createElement('img');
+    img.className = 'poster_image'
+    img.setAttribute('src', movie.poster_path ? 'http://image.tmdb.org/t/p/original' + movie.poster_path : noPicture);
+    img.setAttribute('alt', movie.title);
 
-    divContainer.append(movie_img);
-    trendingPreview_movieList.appendChild(divContainer);
+    container.append(img);
+    trendingPreview_movieList.append(container);
     // console.log(movie.title)
   })
 }
@@ -163,7 +163,7 @@ function createCategories(categories, container) {
 
   categories.forEach(category => {
     const div = document.createElement('div');
-    div.className = 'category_container'
+    div.className = 'category_container category_container--loading'
     const btn = document.createElement('button');
     btn.className = 'category_btn';
     btn.setAttribute('id', 'id' + category.id);
@@ -192,38 +192,34 @@ async function getCategoriesPreview() {
 
 function leftCreateMovies(movies, container) {
   container.innerHTML = "";
+
   movies.forEach(movie => {
     // console.log("movie tv identifier", movie)
     // console.log("movie tv identifier", movie.id)
-    const divPC = document.createElement('div');
-    divPC.addEventListener('click', () => {
+    const containerCard = document.createElement('div');
+    // containerCard.classList.add('poster_image');
+    containerCard.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`
     })
+    containerCard.className = 'container'
 
-    // divPC.addEventListener('click', () => {
-    //   location.hash = `#tv=${movie.id}`
-    //   // location.hash = `#tv=${movie.id}`
-    // })
-    divPC.className = 'poster_container'
-    const divPI = document.createElement('div')
-    divPI.className = 'poster_img';
-    const figure = document.createElement('figure');
-    const movie_img = document.createElement('img');
-    movie_img.setAttribute('src', movie.poster_path ? `${img_original}/${movie.poster_path}` : unavailable);
-    movie_img.setAttribute('alt', movie.title);
+    const posterContainer = document.createElement('div')
+    posterContainer.className = 'poster_container';
+    const img = document.createElement('img');
+    img.className = 'poster_image'
+    img.setAttribute('src', movie.poster_path ? `${img_original}/${movie.poster_path}` : noPicture);
+    img.setAttribute('alt', movie.title);
     const spanYear = document.createElement('span');
     const getString = `${movie?.release_date || movie?.first_air_date}`;
     const [year, mont, day] = getString.split('-');
-    // console.log("year", getString);
-    // console.log("year", year);
     spanYear.innerText = year;
     const title = document.createElement('p');
+    title.className = 'poster_title'
     title.innerText = `${movie?.name || movie?.original_title || movie?.title}`
 
-    figure.appendChild(movie_img);
-    divPI.append(spanYear, figure);
-    divPC.append(divPI, title);
-    container.appendChild(divPC);
+    posterContainer.append(spanYear, img);
+    containerCard.append(posterContainer, title);
+    container.appendChild(containerCard);
   })
 }
 
@@ -473,7 +469,7 @@ async function getMovieById(id) {
   document.querySelector('.detail_runtime').innerText= `${dataMovie.runtime}min`;
   const [date, _] = dataMovie.release_date.split('-');
   document.querySelector('.detail_date').innerText = date;
-  detailPoster_path.setAttribute('src', dataMovie.poster_path ? "http://image.tmdb.org/t/p/original" + dataMovie.poster_path : unavailable);
+  detailPoster_path.setAttribute('src', dataMovie.poster_path ? "http://image.tmdb.org/t/p/original" + dataMovie.poster_path : noPicture);
   detailBackdrop_path.setAttribute('src', dataMovie.backdrop_path ? "http://image.tmdb.org/t/p/original" + dataMovie.backdrop_path : "http://image.tmdb.org/t/p/original" + dataMovie.poster_path );
   detailOverview.textContent = truncate(dataMovie.overview, 280);
   detailOverview_inside.textContent = truncate(dataMovie.overview, 280);
@@ -767,7 +763,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
 async function getPerson(id) {
   const {data} = await api(`person/${id}?append_to_response=images`);
-  console.log("information person", data);
+  // console.log("information person", data);
   // console.log("name", data.name);
   // console.log("biography", data.biography);
   // console.log("biography", data.profile_path);
@@ -806,7 +802,7 @@ async function getPerson(id) {
   carouselSlide.className = 'profile_carouselSlide'
   const img = document.createElement('img');
   img.className = 'profile_poster';
-  img.src = data.profile_path ? "http://image.tmdb.org/t/p/original" + data.profile_path : unavailable;
+  img.src = data.profile_path ? "http://image.tmdb.org/t/p/original" + data.profile_path : noPicture;
 
   const name = document.createElement('h1')
   name.className = 'profile_name';
@@ -852,32 +848,30 @@ async function getPerson(id) {
   // fimls_staringList.innerHTML = "";
 
   document.getElementById('span').addEventListener('click', function(){
-    console.log("click")
+    // console.log("click")
     document.querySelector('.profile_container').classList.toggle('active');
   })
 
   filmsStaring.forEach(movie => {
-    const divContainer = document.createElement('div')
-    divContainer.addEventListener('click', () => {
+    const container = document.createElement('div')
+    container.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`;
       // console.log("click poster trending movie home")
     })
-    divContainer.className = 'movie_container'
-    const movie_img = document.createElement('img');
-    movie_img.className = 'movie_img'
-    movie_img.setAttribute('src', movie.poster_path ? "http://image.tmdb.org/t/p/original" + movie.poster_path : unavailable);
-    movie_img.setAttribute('alt', movie.title);
+    container.className = 'container_poster'
+    const img = document.createElement('img');
+    img.className = 'poster_image'
+    img.setAttribute('src', movie.poster_path ? "http://image.tmdb.org/t/p/original" + movie.poster_path : noPicture);
+    img.setAttribute('alt', movie.title);
 
-    divContainer.appendChild(movie_img);
-    fimlsStaringList.appendChild(divContainer);
-    // console.log(movie.title)
-
+    container.append(img);
+    fimlsStaringList.appendChild(container);
   })
 
   profileContainer.append(profileDescription, filmContainer);
 
   const getImagesProfile = data.images.profiles;
-  console.log(getImagesProfile)
+  // console.log(getImagesProfile)
   // if(getImagesProfile.length > 2) {
   //   console.log("+++++++")
   //   document.querySelector('.slideshow_container').classList.remove('active');
@@ -911,7 +905,7 @@ async function getPerson(id) {
         // img = container.querySelector('img');
         tgt = event.target;
     if (tgt === prev) {
-      console.log("click previous");
+      // console.log("click previous");
       if (counter > 0) {
         img.src = `${img_original}${getImagesProfile[counter - 1].file_path}`;
         counter--;
@@ -920,7 +914,7 @@ async function getPerson(id) {
         counter = getImagesProfile.length - 1;
       }
     } else if(tgt === next) {
-      console.log("click next");
+      // console.log("click next");
       if(counter < getImagesProfile.length - 1) {
         img.src = `${img_original}${getImagesProfile[counter + 1].file_path}`;
         counter++;
