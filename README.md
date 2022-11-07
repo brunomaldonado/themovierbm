@@ -2,7 +2,7 @@
 # themovierbm
 ## API themoviedb
 
-
+### Home...
 <p align="center">
   <!-- <img src="./src/assets/home.png" alt="" width="auto"> -->
   
@@ -10,10 +10,11 @@
   
 </p>
 
+### Movie details...
 <p align="center">
   <img src="./src/assets/detail.png" alt="" width="auto">
 </p>
 
 ------------
 ------------
-Visit the site here 👉  ... [brunomaldonado](https://brunomaldonado.github.io/themovierbm/#home "Visit the site here brunomaldon
+Visit the site here 👉  ... [brunomaldonado](https://brunomaldonado.github.io/themovierbm/#home)
