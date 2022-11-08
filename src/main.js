@@ -131,14 +131,17 @@ async function getPopularBannerPreviews() {
  
 }
 
+const trendingPreview_movieList = document.querySelector('.trendingPreview_movieList');
+trendingPreview_movieList.innerHTML = "";
+
 async function getTrendingMoviesPreview() {
   const {data} = await api('trending/movie/day');
   // console.log(data.results);
   const trending = data.results;
   // console.log(trending);
 
-  const trendingPreview_movieList = document.querySelector('.trendingPreview_movieList');
-  trendingPreview_movieList.innerHTML = "";
+  // const trendingPreview_movieList = document.querySelector('.trendingPreview_movieList');
+  // trendingPreview_movieList.innerHTML = "";
 
   trending.forEach(movie => {
     const container = document.createElement('div')
@@ -163,11 +166,11 @@ function createCategories(categories, container) {
 
   categories.forEach(category => {
     const div = document.createElement('div');
-    div.className = 'category_container category_container--loading'
-    const btn = document.createElement('button');
-    btn.className = 'category_btn';
-    btn.setAttribute('id', 'id' + category.id);
-    btn.addEventListener('click', (event) => {
+    div.className = 'category_container';
+    const button = document.createElement('button');
+    button.className = 'category_btn';
+    button.setAttribute('id', 'id' + category.id);
+    button.addEventListener('click', (event) => {
       location.hash = `#category=${category.id}-${category.name}`;
       window.scroll({
         top: 566,
@@ -176,8 +179,8 @@ function createCategories(categories, container) {
     })
     const p = document.createElement('p');
     p.innerText = `${category.name}`;
-    btn.appendChild(p);
-    div.appendChild(btn)
+    button.appendChild(p);
+    div.appendChild(button)
     container.appendChild(div)
   })
 }
@@ -190,36 +193,33 @@ async function getCategoriesPreview() {
   createCategories(categories, categoriesPreviewList);
 }
 
+
 function leftCreateMovies(movies, container) {
-  container.innerHTML = "";
+  container.innerHTML = '';
 
   movies.forEach(movie => {
-    // console.log("movie tv identifier", movie)
-    // console.log("movie tv identifier", movie.id)
-    const containerCard = document.createElement('div');
-    // containerCard.classList.add('poster_image');
-    containerCard.addEventListener('click', () => {
+    const movieContainer = document.createElement('div')
+    movieContainer.classList.add('movie_container');
+    movieContainer.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`
     })
-    containerCard.className = 'container'
-
-    const posterContainer = document.createElement('div')
-    posterContainer.className = 'poster_container';
     const img = document.createElement('img');
-    img.className = 'poster_image'
+    img.className = 'poster_image skeleton'
+    // img.classList.add('poster_image')
     img.setAttribute('src', movie.poster_path ? `${img_original}/${movie.poster_path}` : noPicture);
     img.setAttribute('alt', movie.title);
-    const spanYear = document.createElement('span');
+    const date = document.createElement('span');
     const getString = `${movie?.release_date || movie?.first_air_date}`;
     const [year, mont, day] = getString.split('-');
-    spanYear.innerText = year;
+    date.innerText = year;
     const title = document.createElement('p');
     title.className = 'poster_title'
     title.innerText = `${movie?.name || movie?.original_title || movie?.title}`
 
-    posterContainer.append(spanYear, img);
-    containerCard.append(posterContainer, title);
-    container.appendChild(containerCard);
+    // movieContainer.append(date, img);
+    // containerCard.append(movieContainer, title);
+    movieContainer.append(img, title);
+    container.appendChild(movieContainer);
   })
 }
 
@@ -251,28 +251,31 @@ function rightCreateMovies(movies, container) {
   container.innerHTML = "";
 
   movies.forEach(movie => {
-    const divContainer = document.createElement('div');
-    divContainer.className = 'container_card';
+    const containerCard = document.createElement('div');
+    containerCard.className = 'container_card';
+    const containerImage = document.createElement('div');
+    containerImage.className = 'container_image'
     const img = document.createElement('img');
     img.setAttribute('src', 'http://image.tmdb.org/t/p/original' + movie.poster_path)
     img.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`
       // console.log('Click poster right home')
     })
-    const divInfo = document.createElement('div');
-    divInfo.className = 'info';
+    const containerIfo = document.createElement('div');
+    containerIfo.className = 'info';
     const title = document.createElement('p');
     title.innerText = `${movie?.name || movie?.original_title || movie?.title}`
     title.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`
       // console.log('Click poster right home')
     })
-    const spanYear = document.createElement('span');
-    spanYear.innerText = `${movie?.release_date}`;
+    const date = document.createElement('span');
+    date.innerText = `${movie?.release_date}`;
 
-    divInfo.append(title, spanYear);
-    divContainer.append(img, divInfo);
-    container.appendChild(divContainer);
+    containerIfo.append(title, date);
+    containerImage.append(img)
+    containerCard.append(containerImage, containerIfo);
+    container.appendChild(containerCard);
   })
 }
 
@@ -928,4 +931,4 @@ async function getPerson(id) {
 
 
 
-getPopularBannerPreviews();
+// getPopularBannerPreviews();
