@@ -5,16 +5,14 @@ const img_original = "http://image.tmdb.org/t/p/original";
 const no_image_holder = "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg";
 
 // contentModal and singleContent
-const unavailable =
-  "https://www.movienewz.com/img/films/poster-holder.jpg";
+// const unavailable = "https://www.movienewz.com/img/films/poster-holder.jpg";
+const unavailable = "https://www.linkpicture.com/q/no_thumbnail.jpg"
 
 // contentModal
-const unavailableLandscape =
-  "https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg";
+const unavailableLandscape = "https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg";
 
 // For Carousel
-const noPicture =
-  "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg";
+const noPicture = "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg";
 
 
 // const notAvailable = 
@@ -152,7 +150,7 @@ async function getTrendingMoviesPreview() {
     container.className = 'container_poster'
     const img = document.createElement('img');
     img.className = 'poster_image'
-    img.setAttribute('src', movie.poster_path ? 'http://image.tmdb.org/t/p/original' + movie.poster_path : noPicture);
+    img.setAttribute('src', movie.poster_path ? 'http://image.tmdb.org/t/p/original' + movie.poster_path : unavailable);
     img.setAttribute('alt', movie.title);
 
     container.append(img);
@@ -206,7 +204,7 @@ function leftCreateMovies(movies, container) {
     const img = document.createElement('img');
     img.className = 'poster_image skeleton'
     // img.classList.add('poster_image')
-    img.setAttribute('src', movie.poster_path ? `${img_original}/${movie.poster_path}` : noPicture);
+    img.setAttribute('src', movie.poster_path ? `${img_original}/${movie.poster_path}` : unavailable);
     img.setAttribute('alt', movie.title);
     const date = document.createElement('span');
     const getString = `${movie?.release_date || movie?.first_air_date}`;
@@ -472,7 +470,7 @@ async function getMovieById(id) {
   document.querySelector('.detail_runtime').innerText= `${dataMovie.runtime}min`;
   const [date, _] = dataMovie.release_date.split('-');
   document.querySelector('.detail_date').innerText = date;
-  detailPoster_path.setAttribute('src', dataMovie.poster_path ? "http://image.tmdb.org/t/p/original" + dataMovie.poster_path : noPicture);
+  detailPoster_path.setAttribute('src', dataMovie.poster_path ? "http://image.tmdb.org/t/p/original" + dataMovie.poster_path : unavailable);
   detailBackdrop_path.setAttribute('src', dataMovie.backdrop_path ? "http://image.tmdb.org/t/p/original" + dataMovie.backdrop_path : "http://image.tmdb.org/t/p/original" + dataMovie.poster_path );
   detailOverview.textContent = truncate(dataMovie.overview, 280);
   detailOverview_inside.textContent = truncate(dataMovie.overview, 280);
@@ -805,7 +803,7 @@ async function getPerson(id) {
   carouselSlide.className = 'profile_carouselSlide'
   const img = document.createElement('img');
   img.className = 'profile_poster';
-  img.src = data.profile_path ? "http://image.tmdb.org/t/p/original" + data.profile_path : noPicture;
+  img.src = data.profile_path ? "http://image.tmdb.org/t/p/original" + data.profile_path : unavailable;
 
   const name = document.createElement('h1')
   name.className = 'profile_name';
@@ -864,7 +862,7 @@ async function getPerson(id) {
     container.className = 'container_poster'
     const img = document.createElement('img');
     img.className = 'poster_image'
-    img.setAttribute('src', movie.poster_path ? "http://image.tmdb.org/t/p/original" + movie.poster_path : noPicture);
+    img.setAttribute('src', movie.poster_path ? "http://image.tmdb.org/t/p/original" + movie.poster_path : unavailable);
     img.setAttribute('alt', movie.title);
 
     container.append(img);
