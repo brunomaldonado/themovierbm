@@ -929,4 +929,4 @@ async function getPerson(id) {
 
 
 
-// getPopularBannerPreviews();
+getPopularBannerPreviews();

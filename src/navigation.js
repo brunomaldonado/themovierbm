@@ -126,7 +126,7 @@ function homePage() {
   relatedMovies.classList.add("inactive");
   profileInformation.classList.add("inactive");
   
-  getPopularBannerPreviews();
+  // getPopularBannerPreviews();
   getTrendingMoviesPreview();
   getCategoriesPreview();
   getMostPopular();
