@@ -12,7 +12,7 @@
 
 ### Movie details...
 <p align="center">
-  <img src="./src/assets/detail.png" alt="" width="auto">
+  <img src="./src/assets/poster.png" alt="" width="auto">
 </p>
 
 ------------
