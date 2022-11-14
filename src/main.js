@@ -83,7 +83,8 @@ async function getPopularBannerPreviews() {
   const overview = document.querySelector('.overview');
   title.innerText = `${data?.name || data?.original_title || data?.title}`;
   subTitle.innerText = `${data.tagline || data.original_name}`;
-  overview.innerText = `${truncate(data.overview, 218)}`;
+  overview.innerText = `${truncate(data.overview)}`;
+
 
   const bg_image = document.querySelector('.objf');
   const banner_img = document.createElement('img');
@@ -257,7 +258,6 @@ function rightCreateMovies(movies, container) {
     img.setAttribute('src', 'http://image.tmdb.org/t/p/original' + movie.poster_path)
     img.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`
-      // console.log('Click poster right home')
     })
     const containerIfo = document.createElement('div');
     containerIfo.className = 'info';
@@ -265,11 +265,12 @@ function rightCreateMovies(movies, container) {
     title.innerText = `${movie?.name || movie?.original_title || movie?.title}`
     title.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`
-      // console.log('Click poster right home')
     })
     const date = document.createElement('span');
     date.innerText = `${movie?.release_date}`;
-
+    date.addEventListener('click', () => {
+      location.hash = `#movie=${movie.id}`
+    })
     containerIfo.append(title, date);
     containerImage.append(img)
     containerCard.append(containerImage, containerIfo);
@@ -472,7 +473,7 @@ async function getMovieById(id) {
   document.querySelector('.detail_date').innerText = date;
   detailPoster_path.setAttribute('src', dataMovie.poster_path ? "http://image.tmdb.org/t/p/original" + dataMovie.poster_path : unavailable);
   detailBackdrop_path.setAttribute('src', dataMovie.backdrop_path ? "http://image.tmdb.org/t/p/original" + dataMovie.backdrop_path : "http://image.tmdb.org/t/p/original" + dataMovie.poster_path );
-  detailOverview.textContent = truncate(dataMovie.overview, 280);
+  detailOverview.textContent = truncate(dataMovie.overview);
   detailOverview_inside.textContent = truncate(dataMovie.overview, 280);
   typeLanguages.textContent = languages.join(', ') || dataMovie.original_language;
   typeLanguages_inside.textContent = languages.join(', ') || dataMovie.original_language;
