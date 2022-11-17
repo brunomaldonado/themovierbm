@@ -63,6 +63,55 @@ const getMovieInfo = async (movieId, type) => {
   return info;
 }
 
+// Utils 
+// const lazyLoader = new IntersectionObserver((entries, observer) => {
+//   entries.forEach((entry) => {
+//     // console.log("entry", entry.target.setAttribute)
+//     if(entry.isIntersecting) {
+//       console.log({entry})
+//       const url = entry.target.getAttribute('data-src');
+//       entry.target.setAttribute('src', url);
+//     }
+//   })
+// })
+
+// let options = {
+//   root: null,
+//   rootMargin: '0px',
+//   threshold: 0.5,
+// }
+
+// const lazy = (entries, observer) => {
+//   entries.forEach((entry) => {
+//     if(entry.isIntersecting) {
+//       console.log("onserver", {entry})
+      // const lazyImage = entry.target;
+      // lazyImage.src = lazyImage.dataset.src;
+      // entry.target.classList.add('show')
+      // const url = entry.target.getAttribute('data-src');
+      // entry.target.setAttribute('src', url);
+//       observer.unobserve(entry.target)
+//     }
+//   })
+// }
+
+const observer = new IntersectionObserver((entries, observer) => {
+  // console.log('entries', entries)
+  // console.log('entries', observer)
+  entries.forEach((entry) => {
+    // const lazy = entry.target.classList.toggle('show', entry.isIntersecting)
+    entry.target.classList.toggle('show', entry.isIntersecting)
+    if(entry.isIntersecting) {
+      // console.log('lazy', {lazy});
+      const url = entry.target.getAttribute('data-src');
+      entry.target.setAttribute('src', url);
+      observer.unobserve(entry.target)
+    }
+  }, {
+    // threshold: 0,
+  })
+})
+
 async function getPopularBannerPreviews() {
   //  const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
   //   const data = await response.json();
@@ -84,8 +133,13 @@ async function getPopularBannerPreviews() {
   title.innerText = `${data?.name || data?.original_title || data?.title}`;
   subTitle.innerText = `${data.tagline || data.original_name}`;
   overview.innerText = `${truncate(data.overview)}`;
-
-
+  const span = document.createElement('span');
+  span.id = 'showmore'
+  // overview.appendChild(span);
+  // document.getElementById('showmore').addEventListener('click', function(){
+  //   // console.log("click")
+  //   document.querySelector('.description').classList.toggle('active');
+  // })
   const bg_image = document.querySelector('.objf');
   const banner_img = document.createElement('img');
   banner_img.className = 'clickP'
@@ -130,17 +184,14 @@ async function getPopularBannerPreviews() {
  
 }
 
+
 const trendingPreview_movieList = document.querySelector('.trendingPreview_movieList');
 trendingPreview_movieList.innerHTML = "";
 
 async function getTrendingMoviesPreview() {
   const {data} = await api('trending/movie/day');
-  // console.log(data.results);
+  console.log(data.results);
   const trending = data.results;
-  // console.log(trending);
-
-  // const trendingPreview_movieList = document.querySelector('.trendingPreview_movieList');
-  // trendingPreview_movieList.innerHTML = "";
 
   trending.forEach(movie => {
     const container = document.createElement('div')
@@ -151,12 +202,14 @@ async function getTrendingMoviesPreview() {
     container.className = 'container_poster'
     const img = document.createElement('img');
     img.className = 'poster_image'
-    img.setAttribute('src', movie.poster_path ? 'http://image.tmdb.org/t/p/original' + movie.poster_path : unavailable);
+    img.setAttribute('src', unavailable)
+    img.setAttribute('data-src', movie.poster_path ? 'http://image.tmdb.org/t/p/original' + movie.poster_path : unavailable)
     img.setAttribute('alt', movie.title);
 
-    container.append(img);
-    trendingPreview_movieList.append(container);
-    // console.log(movie.title)
+    observer.observe(img)
+
+    container.appendChild(img);
+    trendingPreview_movieList.appendChild(container);
   })
 }
 
@@ -205,7 +258,8 @@ function leftCreateMovies(movies, container) {
     const img = document.createElement('img');
     img.className = 'poster_image skeleton'
     // img.classList.add('poster_image')
-    img.setAttribute('src', movie.poster_path ? `${img_original}/${movie.poster_path}` : unavailable);
+    img.setAttribute('src', unavailable)
+    img.setAttribute('data-src', movie.poster_path ? `${img_original}/${movie.poster_path}` : unavailable);
     img.setAttribute('alt', movie.title);
     const date = document.createElement('span');
     const getString = `${movie?.release_date || movie?.first_air_date}`;
@@ -215,6 +269,7 @@ function leftCreateMovies(movies, container) {
     title.className = 'poster_title'
     title.innerText = `${movie?.name || movie?.original_title || movie?.title}`
 
+    observer.observe(img)
     // movieContainer.append(date, img);
     // containerCard.append(movieContainer, title);
     movieContainer.append(img, title);
@@ -255,10 +310,12 @@ function rightCreateMovies(movies, container) {
     const containerImage = document.createElement('div');
     containerImage.className = 'container_image'
     const img = document.createElement('img');
-    img.setAttribute('src', 'http://image.tmdb.org/t/p/original' + movie.poster_path)
+    img.setAttribute('src', unavailable)
+    img.setAttribute('data-src', 'http://image.tmdb.org/t/p/original' + movie.poster_path)
     img.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`
     })
+    img.className = 'skeleton'
     const containerIfo = document.createElement('div');
     containerIfo.className = 'info';
     const title = document.createElement('p');
@@ -266,11 +323,16 @@ function rightCreateMovies(movies, container) {
     title.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`
     })
+    title.className = 'title'
     const date = document.createElement('span');
     date.innerText = `${movie?.release_date}`;
     date.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`
     })
+    date.className = 'date'
+
+    observer.observe(img)
+
     containerIfo.append(title, date);
     containerImage.append(img)
     containerCard.append(containerImage, containerIfo);
@@ -863,8 +925,11 @@ async function getPerson(id) {
     container.className = 'container_poster'
     const img = document.createElement('img');
     img.className = 'poster_image'
-    img.setAttribute('src', movie.poster_path ? "http://image.tmdb.org/t/p/original" + movie.poster_path : unavailable);
+    img.setAttribute('src', unavailable)
+    img.setAttribute('data-src', movie.poster_path ? "http://image.tmdb.org/t/p/original" + movie.poster_path : unavailable);
     img.setAttribute('alt', movie.title);
+
+    observer.observe(img)
 
     container.append(img);
     fimlsStaringList.appendChild(container);
@@ -930,4 +995,4 @@ async function getPerson(id) {
 
 
 
-getPopularBannerPreviews();
+getPopularBannerPreviews()
