@@ -111,8 +111,11 @@ const observer = new IntersectionObserver((entries, observer) => {
     // threshold: 0,
   })
 })
+// http://image.tmdb.org/t/p/original/wdrCwmRnLFJhEoH8GSfymY85KHT.png
+// "ttp://image.tmdb.org/t/p/original/joLFuCWg9e2lweYnFQtRPJKSLlI.png"
 
 async function getPopularBannerPreviews() {
+  banner.innerHTML = ""
   //  const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
   //   const data = await response.json();
   // console.log("trending", data.results);
@@ -124,14 +127,48 @@ async function getPopularBannerPreviews() {
   // console.log("request", request.data.results);
   let original = request.data.results[Math.floor(Math.random() * request.data.results.length)]
   let {data} = await getMovieInfo(original.id, 'movie');
-  // console.log("get Info", data);
+  console.log("banner info", data);
 
   const title = document.querySelector('.title');
   const subTitle = document.querySelector('.subTitle');
-  users_score.innerHTML = `${data.vote_average.toFixed(1) * 10}%`
+  const userScore = document.createElement('div');
+  userScore.className = 'users_score';
+  userScore.innerHTML = `${data.vote_average.toFixed(1) * 10}%`;
+  const ratings = document.createElement('div');
+  ratings.className = 'ratings';
+  const star1 = document.createElement('button');
+  star1.className = 'star';
+  star1.innerHTML = '&#9734';
+  const star2 = document.createElement('button')
+  star2.className = 'star'
+  star2.innerHTML = '&#9734';
+  const star3 = document.createElement('button')
+  star3.className = 'star'
+  star3.innerHTML = '&#9734';
+  const star4 = document.createElement('button')
+  star4.className = 'star'
+  star4.innerHTML = '&#9734';
+  const star5 = document.createElement('button');
+  star5.className = 'star'
+  star5.innerHTML = '&#9734';
+  ratings.append(star1, star2, star3, star4, star5);
+  const meta = document.createElement('div');
+  meta.className = 'meta'
+  const country = document.createElement('span');
+  country.innerHTML = 'US'
+  const date = document.createElement('span');
+  date.innerText = data.release_date;
+  const runtime = document.createElement('span');
+  runtime.innerText = `${data.runtime}min`
+  const language = document.createElement('span');
+  language.innerText = data.original_language;
+  meta.append(country, date, runtime, language)
+  votes.append(userScore, ratings, meta);
+  // userScore.appendChild(document.createTextNode)  
+  // users_score.innerHTML = `${data.vote_average.toFixed(1) * 10}%`
   const overview = document.querySelector('.overview');
-  title.innerText = `${data?.name || data?.original_title || data?.title}`;
-  subTitle.innerText = `${data.tagline || data.original_name}`;
+  title.innerText = `${data?.name || data?.original_title}`;
+  subTitle.innerText = `${data.tagline || data.original_name || data?.title}`;
   overview.innerText = `${truncate(data.overview)}`;
   const span = document.createElement('span');
   span.id = 'showmore'
@@ -148,10 +185,40 @@ async function getPopularBannerPreviews() {
   bg_image.appendChild(banner_img);
 
   // document.querySelector('.banner_country').innerHTML = `${data}`
-  document.querySelector('.banner_language').innerText= `${data.original_language}`
-  document.querySelector('.banner_date').innerText= `${data.release_date}`
-  document.querySelector('.banner_runtime').innerText= `${data.runtime}min`;
-  const getGenres = []
+  // document.querySelector('.banner_language').innerText= `${data.original_language}`
+  // document.querySelector('.banner_date').innerText= `${data.release_date}`
+  // document.querySelector('.banner_runtime').innerText= `${data.runtime}min`;
+  const MAX_RATING = 5;
+  const MIN_RATING = 1;
+
+  const allStars = document.querySelectorAll('.star');
+  const rating = Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
+  
+  allStars.forEach((star, index) => {
+    console.log("rating", rating, index + 1);
+    let current_star_level = index + 1;
+    if (current_star_level <= rating) {
+      // console.log("vote average", data.vote_average)
+      star.innerHTML = '&#9733';
+    }
+  })
+
+  allStars.forEach((star, i) => {
+    star.addEventListener('click', () => {
+      // console.log("star", i + 1)
+      let current_star_level = i + 1;
+
+      allStars.forEach((star, j) => {
+        if(current_star_level >= j + 1) {
+          star.innerHTML = '&#9733';
+        } else {
+          star.innerHTML = '&#9734';
+        }
+      })
+    })
+  })
+
+   const getGenres = []
   const getGenre = data.genres;
   // console.log('get', getGenre)
   getGenre.map((gender) => {
@@ -162,11 +229,17 @@ async function getPopularBannerPreviews() {
   // console.log('gender', getGenres);
 
   const genres = document.querySelector('#genre');
-  genres.innerText = `${getGenres.join(', ')}.`;
+  genres.innerText = `Genres: ${getGenres.join(', ')}.`;
 
-  bannerButton.addEventListener('click', () => {
+  const button = document.createElement('button')
+  button.className = 'btn_play TPlay'
+  button.id = 'play'
+  button.innerText = 'Play movie'
+  button.addEventListener('click', () => {
     location.hash = `#movie=${data.id}`;
   })
+
+  headerContent.append(button)
 
   /* score percentage */
 
@@ -181,8 +254,9 @@ async function getPopularBannerPreviews() {
   //     return "red";
   //   }
   // }
- 
 }
+
+
 
 
 const trendingPreview_movieList = document.querySelector('.trendingPreview_movieList');
@@ -190,7 +264,7 @@ trendingPreview_movieList.innerHTML = "";
 
 async function getTrendingMoviesPreview() {
   const {data} = await api('trending/movie/day');
-  console.log(data.results);
+  // console.log(data.results);
   const trending = data.results;
 
   trending.forEach(movie => {

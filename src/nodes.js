@@ -7,6 +7,7 @@ const homeMoviesSection = document.querySelector('.home_movies');
 const profileInformation = document.querySelector('.profile_information');
 
 /* ARTICLE */
+const banner = document.querySelector('.banner_skeleton')
 const headerContent = document.querySelector('.TPost');
 const billedCast = document.querySelector('.billed_cast');
 const relatedMovies = document.getElementById('related_movies');
@@ -32,6 +33,7 @@ const cancelBtn = document.querySelector('.cancel_btn');
 const searchBox = document.querySelector('.search_box');
 const searchInput = document.querySelector('input')
 const btnOverlay = document.querySelector('.overlay_btn');
+const votes = document.querySelector('.votes');
 const bannerButton = document.getElementById('bannerButton');
 const trendsButton = document.getElementById('trendsButton');
 const categories_list = document.getElementById('categories_list');

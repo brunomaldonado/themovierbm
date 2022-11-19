@@ -22,10 +22,18 @@
 <body>
   <header class="header">
     <div class="header_top cont">
-      <button id="brandButton" class="header_brand left">
-        <img class="brand" src="./src/assets/brand.png" alt="" />
+      <div class="header_brand left">
+        <div class="header__cube" id="brandButton">
+          <div class="square1"></div>
+          <div class="square2"></div>
+          <div class="square3"></div>
+          <div class="stop"></div>
+          <div class="play"></div>
+          <div class="pause1"></div>
+          <div class="pause2"></div>
+        </div>
         <span id="brand_name">BIY_7</span>
-      </button>
+      </div>
       <div class="header_nav right">
         <form onsubmit="return false" action="#" id="searchForm" class="search_box">
           <input type="text" placeholder="Search...">
@@ -51,35 +59,58 @@
   <section id="bannerSlice" class="backdrop inactivea cont">
     <article id="banner" class="TPost banner">
       <header>
-        <div class="title">Squid Game<span class="TpTv">serie</span></div>
-        <h4 class="subTitle">45.6 billion won is child's play.</h4>
+        <div class="title"></div>
+        <h4 class="subTitle"></h4>
       </header>
         <div class="votes">
-          <!-- <div class="users_score"></div> -->
-          <div class="users_score">
-            <!-- <div class="vote_progress"></div> -->
+          <!-- <div class="users_score">
+          </div>
+          <div class="ratings"></div>
+          <div class="meta">
+            <span class="banner_date"></span>
+            <span class="banner_runtime"></span>
+            <span class="banner_language"></span>
+          </div> -->
+        </div>
+      <div class="description">
+        <p class="desciption_genres"><span id="genre"></span></p>
+        <p class="overview "></p>
+      </div>
+      <!-- <div class="underside">
+        <button id="bannerButton" class="btn_play TPlay"></button>
+      </div> -->
+    </article>
+
+    <article id="banner" class="TPost banner banner_skeleton">
+      <header>
+        <div class="title btitle--loading"></div>
+        <h4 class="subTitle subTitle--loading"></h4>
+      </header>
+        <div class="votes">
+          <div class="users_score--loading">
           </div>
           <div class="ratings">
-            <!-- <img src={star} alt="" />
-          <img src={star} alt="" />
-          <img src={star} alt="" />
-          <img src={staroutline} alt="" />   -->
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-          <div class="meta">
-            <!-- <span class="banner_country">US</span> -->
-            <span class="banner_language">en</span>
-            <span class="banner_date">20-07-2022</span>
-            <span class="banner_runtime">146min</span>
+          <div class="meta meta--loading">
+            <span class="banner_date"></span>
+            <span class="banner_runtime"></span>
+            <span class="banner_language"></span>
           </div>
         </div>
       <div class="description">
-        <p class="desciption_genres">Genres: <span id="genre">Action & Adventure, Mystery, Drama.</span></p>
-        <p class="overview"></p>
+        <p class="desciption_genres genre--loading"></p>
+        <p class="overview overview--loading"></p>
+        <p class="overview overview--loading"></p>
+        <p class="overview overview--loading"></p>
+        <p class="overview overview--loading"></p>
+        <p class="overview overview--loading"></p>
       </div>
-      <div class="underside">
-        <button id="bannerButton" class="btn_play TPlay">Play Movie</button>
-      </div>
+      <button class="btn_play TPlay TPlay--loading"></button>
     </article>
+
     <div class="pb_image">
       <figure class="objf">
       </figure>
