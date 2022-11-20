@@ -9,6 +9,8 @@ const profileInformation = document.querySelector('.profile_information');
 /* ARTICLE */
 const banner = document.querySelector('.banner_skeleton')
 const headerContent = document.querySelector('.TPost');
+const trendingPreviewMovieList = document.querySelector('.trendingPreview_movieList');
+const showSkeleton = document.querySelector('.show_skeleton')
 const billedCast = document.querySelector('.billed_cast');
 const relatedMovies = document.getElementById('related_movies');
 const previewTriller = document.querySelector('.previewTriller');

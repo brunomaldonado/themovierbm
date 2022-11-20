@@ -137,19 +137,19 @@ async function getPopularBannerPreviews() {
   const ratings = document.createElement('div');
   ratings.className = 'ratings';
   const star1 = document.createElement('button');
-  star1.className = 'star';
+  star1.className = 'star one';
   star1.innerHTML = '&#9734';
   const star2 = document.createElement('button')
-  star2.className = 'star'
+  star2.className = 'star two'
   star2.innerHTML = '&#9734';
   const star3 = document.createElement('button')
-  star3.className = 'star'
+  star3.className = 'star three'
   star3.innerHTML = '&#9734';
   const star4 = document.createElement('button')
-  star4.className = 'star'
+  star4.className = 'star four'
   star4.innerHTML = '&#9734';
   const star5 = document.createElement('button');
-  star5.className = 'star'
+  star5.className = 'star five'
   star5.innerHTML = '&#9734';
   ratings.append(star1, star2, star3, star4, star5);
   const meta = document.createElement('div');
@@ -184,23 +184,94 @@ async function getPopularBannerPreviews() {
   banner_img.setAttribute('alt', data.title);
   bg_image.appendChild(banner_img);
 
-  // document.querySelector('.banner_country').innerHTML = `${data}`
-  // document.querySelector('.banner_language').innerText= `${data.original_language}`
-  // document.querySelector('.banner_date').innerText= `${data.release_date}`
-  // document.querySelector('.banner_runtime').innerText= `${data.runtime}min`;
   const MAX_RATING = 5;
   const MIN_RATING = 1;
 
   const allStars = document.querySelectorAll('.star');
-  const rating = Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
-  
-  allStars.forEach((star, index) => {
-    console.log("rating", rating, index + 1);
-    let current_star_level = index + 1;
-    if (current_star_level <= rating) {
-      // console.log("vote average", data.vote_average)
-      star.innerHTML = '&#9733';
+  // const rating = Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING;
+
+  // const getClassByRate = (vote) => {
+  //   let p = (vote * percentage) / 100
+
+  //   if (p >= 80) {
+  //     return "green";
+  //   } else if(p >=60) {
+  //     return "orange";
+  //   } else {
+  //     return "red";
+  //   }
+  // }
+
+  let ratingVotes = `${data.vote_average.toFixed(1) * 10}`;
+    console.log("votes", ratingVotes);
+    let numberStar = [];
+    // console.log("numberStar", numberStar);
+    if(ratingVotes >= 90){
+      let star5 = 5;
+      // console.log("star5", star5);
+      numberStar.push(star5);
+      // document.querySelector('.star').style.color = "green";
     }
+    if(ratingVotes >= 80) {
+      let star4 = 4;
+      // console.log("star4", star4);
+      numberStar.push(star4);
+      // document.querySelector('.star').style.color = "green";
+    } 
+    if(ratingVotes >= 70) {
+      let star3 = 3;
+      // console.log("star3", star3);
+      numberStar.push(star3);
+      // document.querySelector('.star').style.color = "orange";
+    }
+    if(ratingVotes >= 60) {
+      let star2 = 2;
+      // console.log("star2", star2);
+      numberStar.push(star2);
+      // document.querySelector('.star').style.color = "orange";
+    } 
+    if(ratingVotes >= 0) {
+      let star1 = 1;
+      // console.log("star1", star1);
+      numberStar.push(star1);
+      // document.querySelector('.star').style.color = "red";
+    }
+
+
+  allStars.forEach((star, i) => {
+    // console.log("rating", rating, i + 1);
+    let current_star_level = i + 1;
+    // console.log("numberStar", numberStar);
+    // if (current_star_level <= rating) {
+    //   console.log("star", current_star_level, "rating", rating)
+      // star.innerHTML = '&#9733';
+    // }
+    if (current_star_level <= numberStar.length) {
+      star.innerHTML = '&#9733';
+      console.log("star", current_star_level, "numberStar", numberStar);
+      // if (numberStar.length == 1) {
+      //   document.querySelector('star').style.color = "red";
+      //   star.innerHTML = '&#9733';
+      // }     
+      // if (numberStar.length == 2) {
+      //   document.querySelector('.one').style.color = "orange";
+      //   document.querySelector('.two').style.color = "orange";
+      //   star.innerHTML = '&#9733';
+      // }
+      // if (numberStar.length == 3) {
+      //   document.querySelector('.one').style.color = "orange";
+      //   document.querySelector('.two').style.color = "orange";
+      //   document.querySelector('.three').style.color = "orange";
+      //   star.innerHTML = '&#9733';
+      // }
+      // if (numberStar.length == 4) {
+      //   document.querySelector('.one').style.color = "green";
+      //   document.querySelector('.two').style.color = "green";
+      //   document.querySelector('.three').style.color = "green";
+      //   document.querySelector('.four').style.color = "green";
+      //   star.innerHTML = '&#9733';
+      // }
+    } 
   })
 
   allStars.forEach((star, i) => {

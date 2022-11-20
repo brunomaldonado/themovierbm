@@ -650,11 +650,11 @@ input[type="text"] {
   margin-right: 1.5rem;
 }
 .ratings span {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   background-color: #007aff;
   border-radius: 50%;
-  margin-left: 0.5rem;
+  margin-left: 0.6rem;
   animation: loading-skeleton infinite 1.5s;
 }
 
@@ -681,16 +681,20 @@ input[type="text"] {
   background: #007aff;
   max-width: 90%;
   height: 10px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
   /* border-radius: 5px; */
   animation: loading-skeleton infinite 1.5s;
+}
+
+.description .overview--loading:nth-child(6) {
+  width: 70%;
 }
 
 .TPlay--loading {
   animation: loading-skeleton infinite 1.5s;
   /* padding: 1rem 2.8rem; */
-  width: 90px;
-  height: 33px;
+  width: 97px;
+  height: 36px;
 }
 
 /* ================================================================= CLICKPOSTER */
