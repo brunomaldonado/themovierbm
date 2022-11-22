@@ -36,6 +36,7 @@ const searchBox = document.querySelector('.search_box');
 const searchInput = document.querySelector('input')
 const btnOverlay = document.querySelector('.overlay_btn');
 const votes = document.querySelector('.votes');
+const detailsVotes = document.querySelector('.details_votes');
 const bannerButton = document.getElementById('bannerButton');
 const trendsButton = document.getElementById('trendsButton');
 const categories_list = document.getElementById('categories_list');

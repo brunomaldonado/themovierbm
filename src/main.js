@@ -127,7 +127,8 @@ async function getPopularBannerPreviews() {
   // console.log("request", request.data.results);
   let original = request.data.results[Math.floor(Math.random() * request.data.results.length)]
   let {data} = await getMovieInfo(original.id, 'movie');
-  console.log("banner info", data);
+  // let {data} = await getMovieInfo(original.id, 'tv');
+  // console.log("banner info", data);
 
   const title = document.querySelector('.title');
   const subTitle = document.querySelector('.subTitle');
@@ -203,7 +204,7 @@ async function getPopularBannerPreviews() {
   // }
 
   let ratingVotes = `${data.vote_average.toFixed(1) * 10}`;
-    console.log("votes", ratingVotes);
+    // console.log("votes", ratingVotes);
     let numberStar = [];
     // console.log("numberStar", numberStar);
     if(ratingVotes >= 90){
@@ -248,7 +249,7 @@ async function getPopularBannerPreviews() {
     // }
     if (current_star_level <= numberStar.length) {
       star.innerHTML = '&#9733';
-      console.log("star", current_star_level, "numberStar", numberStar);
+      // console.log("star", current_star_level, "numberStar", numberStar);
       // if (numberStar.length == 1) {
       //   document.querySelector('star').style.color = "red";
       //   star.innerHTML = '&#9733';
@@ -634,9 +635,11 @@ leftCreateMovies(secondData, mostPopularPreviewGrid);
 
 async function getMovieById(id) {  
   previewTriller.innerHTML = "";
+  detailsVotes.innerHTML = "";
   // const infoMovie = await getMovieInfo(id, "movie")
   const infoMovie = await api(`movie/${id}`)
   const dataMovie = infoMovie.data;
+  // console.log(dataMovie);
 
   const movie_trailer = await getMovieTrailer(dataMovie.id);
   // console.log("movie trailer", movie_trailer);
@@ -674,10 +677,130 @@ async function getMovieById(id) {
   // console.log("movie", dataMovie);
   movieDetailTitle.textContent = `${dataMovie?.name || dataMovie?.original_title || dataMovie?.title}`
   movieDetailSubTitle.textContent = dataMovie.tagline || dataMovie.original_name;
-  vote_progress.innerHTML = `${dataMovie.vote_average.toFixed(1) * 10}%`;
-  document.querySelector('.detail_runtime').innerText= `${dataMovie.runtime}min`;
-  const [date, _] = dataMovie.release_date.split('-');
-  document.querySelector('.detail_date').innerText = date;
+
+  const userScore = document.createElement('div');
+  userScore.className = 'users_score';
+  userScore.innerHTML = `${dataMovie.vote_average.toFixed(1) * 10}%`;
+  const ratings = document.createElement('div');
+  ratings.className = 'ratings';
+  const star1 = document.createElement('button');
+  star1.className = 'stars one';
+  star1.innerHTML = '&#9734';
+  const star2 = document.createElement('button')
+  star2.className = 'stars two'
+  star2.innerHTML = '&#9734';
+  const star3 = document.createElement('button')
+  star3.className = 'stars three'
+  star3.innerHTML = '&#9734';
+  const star4 = document.createElement('button')
+  star4.className = 'stars four'
+  star4.innerHTML = '&#9734';
+  const star5 = document.createElement('button');
+  star5.className = 'stars five'
+  star5.innerHTML = '&#9734';
+  ratings.append(star1, star2, star3, star4, star5);
+  const meta = document.createElement('div');
+  meta.className = 'meta'
+  // const country = document.createElement('span');
+  // country.innerHTML = 'US'
+
+  const [dat, _] = dataMovie.release_date.split('-');
+
+  const date = document.createElement('span');
+  date.innerText = dat;
+  const runtime = document.createElement('span');
+  runtime.innerText = `${dataMovie.runtime}min`
+  // const language = document.createElement('span');
+  // language.innerText = dataMovie.original_language;
+  meta.append(date, runtime)
+  detailsVotes.append(userScore, ratings, meta);
+
+  const MAX_RATING = 5;
+  const MIN_RATING = 1;
+
+  const allStars = document.querySelectorAll('.stars');
+  // const rating = Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING;
+
+  // const getClassByRate = (vote) => {
+  //   let p = (vote * percentage) / 100
+
+  //   if (p >= 80) {
+  //     return "green";
+  //   } else if(p >=60) {
+  //     return "orange";
+  //   } else {
+  //     return "red";
+  //   }
+  // }
+
+  let ratingVotes = `${dataMovie.vote_average.toFixed(1) * 10}`;
+    console.log("votes", ratingVotes);
+    let numberStar = [];
+    // console.log("numberStar", numberStar);
+    if(ratingVotes >= 90){
+      let star5 = 5;
+      // console.log("star5", star5);
+      numberStar.push(star5);
+      // document.querySelector('.star').style.color = "green";
+    }
+    if(ratingVotes >= 80) {
+      let star4 = 4;
+      // console.log("star4", star4);
+      numberStar.push(star4);
+      // document.querySelector('.star').style.color = "green";
+    } 
+    if(ratingVotes >= 70) {
+      let star3 = 3;
+      // console.log("star3", star3);
+      numberStar.push(star3);
+      // document.querySelector('.star').style.color = "orange";
+    }
+    if(ratingVotes >= 60) {
+      let star2 = 2;
+      // console.log("star2", star2);
+      numberStar.push(star2);
+      // document.querySelector('.star').style.color = "orange";
+    } 
+    if(ratingVotes >= 1) {
+      let star1 = 1;
+      // console.log("star1", star1);
+      numberStar.push(star1);
+      // document.querySelector('.star').style.color = "red";
+    }
+
+
+  allStars.forEach((star, i) => {
+    // console.log("rating", rating, i + 1);
+    let current_star_level = i + 1;
+    // console.log("numberStar", numberStar);
+    // if (current_star_level <= rating) {
+    //   console.log("star", current_star_level, "rating", rating)
+      // star.innerHTML = '&#9733';
+    // }
+    if (current_star_level <= numberStar.length) {
+      star.innerHTML = '&#9733';
+    } 
+  })
+
+  allStars.forEach((star, i) => {
+    star.addEventListener('click', () => {
+      // console.log("star", i + 1)
+      let current_star_level = i + 1;
+
+      allStars.forEach((star, j) => {
+        if(current_star_level >= j + 1) {
+          star.innerHTML = '&#9733';
+        } else {
+          star.innerHTML = '&#9734';
+        }
+      })
+    })
+  })
+
+  // vote_progress.innerHTML = `${dataMovie.vote_average.toFixed(1) * 10}%`;
+  // document.querySelector('.detail_runtime').innerText= `${dataMovie.runtime}min`;
+  // const [date, _] = dataMovie.release_date.split('-');
+  // document.querySelector('.detail_date').innerText = date;
   detailPoster_path.setAttribute('src', dataMovie.poster_path ? "http://image.tmdb.org/t/p/original" + dataMovie.poster_path : unavailable);
   detailBackdrop_path.setAttribute('src', dataMovie.backdrop_path ? "http://image.tmdb.org/t/p/original" + dataMovie.backdrop_path : "http://image.tmdb.org/t/p/original" + dataMovie.poster_path );
   detailOverview.textContent = truncate(dataMovie.overview);
@@ -729,8 +852,6 @@ async function getMovieById(id) {
   `;
 
   previewTriller.appendChild(div);
-
-
 }
 
 async function getMovieTrailer(id) {

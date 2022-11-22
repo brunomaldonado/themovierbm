@@ -29,7 +29,6 @@ body::-webkit-scrollbar-thumb {
   width: 10px;
   background: rgba(247, 248, 250, 0.2);
   border-radius: 10px;
-  /* border-right: 2px solid #021b79; */
 }
 
 a {
@@ -38,12 +37,13 @@ a {
 }
 
 .cont {
-  /* width: 100%; */
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   margin: 0 auto;
 }
-
+.header {
+  margin-bottom: 2.25rem;
+}
 .header_top {
   display: flex;
   justify-content: space-between;
@@ -377,14 +377,14 @@ input[type="text"] {
   font-size: calc(1.25vw + 1.25vh + 1.8rem);
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.8rem;
   transition: transform 0.2s ease-in-out;
 }
 
 #banner header .subTitle {
   text-align: left;
   font-size: calc(1vw + .5vh + .5rem);
-  margin-bottom:  0.8rem;
+  margin-bottom:  1rem;
   line-height: 1.1;
 }
 
@@ -483,6 +483,7 @@ input[type="text"] {
 
 .overview {
   position: relative;
+  margin-bottom: 2rem;
 }
 
 #banner .description p:nth-child(2) {
@@ -556,9 +557,8 @@ input[type="text"] {
   font-weight: 800;
   background-color: #007aff;
 } */
-
 .btn_play {
-  margin: 2.5rem 0 0 0;
+  /* margin: 2.5rem 0 0 0; */
   cursor: pointer;
   padding: 1rem 2.8rem;
   text-align: center;
@@ -649,6 +649,19 @@ input[type="text"] {
   /* color: #ff98; */
   margin-right: 1.5rem;
 }
+.ratings .stars {
+  /* outline: none; */
+  border: none;
+  background-color: unset;
+  font-size: 2rem;
+  color: #ff9800;
+  margin-right: 0.25rem;
+  cursor: pointer;
+}
+.ratings .stars:nth-child(5){
+  /* color: #ff98; */
+  margin-right: 1.5rem;
+}
 .ratings span {
   width: 18px;
   height: 18px;
@@ -699,12 +712,7 @@ input[type="text"] {
 
 /* ================================================================= CLICKPOSTER */
 #movieDetail {
-  margin-top: 3.2rem;
-  /* padding-left: 1.5rem;
-  padding-right: 1.5rem; */
-  /* position: relative; */
   font-family: 'Poppins', sans-serif;
-
 }
 
 #movieDetail .TPost {
@@ -744,10 +752,8 @@ input[type="text"] {
   width: 100%;
   /* border: 1px solid rgb(46, 183, 237); */
 }
-#movieDetail .votes {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+#movieDetail .details_votes {
+  display: grid;
 }
 
 .users_score {
@@ -757,7 +763,9 @@ input[type="text"] {
   position: fixed;
   left: 0;
   /* background-color: rgba(0, 0, 0, 0.2); */
-  background-color: rgba(239, 110, 110, 0.2);
+  background-color: rgba(255, 255, 255, 0.25);
+  font-size: 1.6rem;
+  /* background-color: rgba(239, 110, 110, 0.2); */
   display: grid;
   place-items: center;
   margin-bottom: 1rem;
@@ -776,7 +784,7 @@ input[type="text"] {
   place-items: center;
 }
 
-.vote_average p.green {
+/* .vote_average p.green {
   color: rgb(39, 189, 39);
   
 }
@@ -785,7 +793,7 @@ input[type="text"] {
 }
 .vote_average p.red {
   color: rgb(189, 42, 42);
-}
+} */
 
 /* .ratings::before {
   content: '';
@@ -800,14 +808,8 @@ input[type="text"] {
 } */
 
 .meta {
-  /* margin-top: 1rem; */
-  /* text-align: left; */
-  /* display: flex;
-  text-align: center;
-  justify-content:flex-start; */
   grid-column: 1 / 3;
   width: max-content;
-  /* border: 1px solid red; */
 }
 
 /* .votes img {
@@ -1217,18 +1219,19 @@ iframe{
 /* ================================================================= TRENDING */
 
 .trendingPreview_header {
-  /* margin-top: 2rem;/ */
+  /* margin-top: 2rem; */
   display: flex;
   align-items: center;
   justify-content: space-between;
   vertical-align: middle;
+  /* border: 1px solid red; */
 }
 
 .trendingPreview_title {
   font-size: 2.1rem;
 }
 
-.trendingPreview_btn {
+/* .trendingPreview_btn {
   color: #fff;
   font-weight: 800;
   background-color: #007aff;
@@ -1237,7 +1240,7 @@ iframe{
   outline: none;
   border: none;
   cursor: pointer;
-}
+} */
 
 .trendingPreview_movieList {
   width: 100%;
@@ -1833,7 +1836,7 @@ iframe{
 
 
 .profile_container {
-  margin-top: calc(1.25vw + 1.25vh + 1.8rem);
+  margin-top: calc(1.8vw + 1.25vh + 2rem);
   display: flex;  
   flex-direction: column;
 }
@@ -2170,6 +2173,11 @@ footer{
 }
 
 @media (min-width: 500px) {
+  #movieDetail .details_votes {
+    display: flex;
+    align-items: center;
+  }
+
   .slideshow_container {
     position: relative;
     /* border: 2px solid rgb(0, 255, 76); */

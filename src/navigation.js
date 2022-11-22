@@ -167,7 +167,7 @@ function movieDetailsPage() {
   relatedMovies.classList.remove("inactive");
   profileInformation.classList.add("inactive");
   banner.classList.add("inactive");
-  trendingPreviewMovieList.classList.add("inactive");
+  // trendingPreviewMovieList.classList.add("inactive");
   showSkeleton.classList.add("inactive")
   
   window.scrollTo(0, 0);
@@ -186,7 +186,7 @@ function tvDetailsPage() {
   relatedMovies.classList.remove("inactive");
   profileInformation.classList.add("inactive");
   banner.classList.add("inactive");
-  trendingPreviewMovieList.classList.add("inactive");
+  // trendingPreviewMovieList.classList.add("inactive");
   showSkeleton.classList.add("inactive")
   
   window.scrollTo(0, 0);
@@ -203,7 +203,7 @@ function searchPage() {
   homeMoviesSection.classList.remove("inactive")
   relatedMovies.classList.add("inactive");
   profileInformation.classList.add("inactive");
-  trendingPreviewMovieList.classList.add("inactive");
+  // trendingPreviewMovieList.classList.add("inactive");
   
   // ['#search', 'suits']
   const [_, query] = location.hash.split('=');
@@ -260,7 +260,7 @@ function profilePage() {
   relatedMovies.classList.add("inactive");
   profileInformation.classList.remove("inactive");
   banner.classList.add("inactive");
-  trendingPreviewMovieList.classList.add("inactive");
+  // trendingPreviewMovieList.classList.add("inactive");
   showSkeleton.classList.add("inactive")
   window.scrollTo(0, 0);
 
