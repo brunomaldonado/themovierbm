@@ -754,6 +754,7 @@ input[type="text"] {
 }
 #movieDetail .details_votes {
   display: grid;
+  grid-template-columns: 64px auto;
 }
 
 .users_score {
@@ -771,7 +772,7 @@ input[type="text"] {
   margin-bottom: 1rem;
   position: relative;
   top: 0.5rem;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
 }
 
 .vote_progress {
