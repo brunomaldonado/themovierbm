@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./src/assets/movie.png">
   <title>themovierbm</title>
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.7/glider.min.css">
@@ -245,7 +246,15 @@
       </div>
         <div class="film_staring">
           <h2 class="films_movies"></h2>
-          <article class="fimls_staringList"></article>
+          <article class="fimls_staringList">
+            <div class="scroller_content">
+              <div class="row_films">
+                <!-- <div class="container_poster container_poster--loading"></div>
+                <div class="container_poster container_poster--loading"></div>
+                <div class="container_poster container_poster--loading"></div> -->
+              </div>
+            </div>
+          </article>
         </div>
     </div>
   </section>
@@ -256,22 +265,13 @@
       <button id="trendsButton" class="btn_play TPlay">See More</button>
     </div>
     <article class="trendingPreview_movieList">
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <!-- <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div>
-      <div class="container_poster container_poster--loading"></div> -->
+      <div class="scroller_content">
+        <div class="row_flex">
+          <div class="container_poster container_poster--loading"></div>
+          <div class="container_poster container_poster--loading"></div>
+          <div class="container_poster container_poster--loading"></div>
+        </div>
+      </div>
     </article>
   </section>
 
@@ -305,9 +305,19 @@
 
   <section class="home_movies cont inactivea">
       <div id="mostPopularPreview_left" class="mostPopularPreview_container">
-          <h2 class="header_title">Most Popular</h2>
+        <h2 class="header_title">Most Popular</h2>
         <article class="mostPopularPreview_movieGrid">
-          <div class="movie_container">
+          <!-- <div class="movie_container">
+            <div class="poster_container">
+              <img class="poster_image skeleton" src="" alt="">
+              <div class="movie_button">
+                <div class="heart"></div>
+              </div>
+              <span></span>
+            </div>
+          </div> -->
+
+          <!-- <div class="movie_container">
             <img class="poster_image poster_image--loading" alt="">
             <p class="poster_title poster_title--loading"></p>
           </div>
@@ -326,7 +336,8 @@
           <div class="movie_container">
             <img class="poster_image poster_image--loading" alt="">
             <p class="poster_title poster_title--loading"></p>
-          </div>
+          </div> -->
+
           <!-- <div class="movie_container movie_container__loading"></div>
           <div class="movie_container movie_container__loading"></div>
           <div class="movie_container movie_container__loading"></div>
@@ -334,6 +345,72 @@
           <div class="movie_container movie_container__loading"></div>
           <div class="movie_container movie_container__loading"></div> -->
         </article>
+        <!-- <button class="btnLoadMore">LOAD MORE</button> -->
+
+        <!-- <section id="favouritePreview" class="favouritePreview_container">
+          <h2 class="favourite_title">Favourites movies</h2>
+          <article class="favourites_movieList">
+            <div class="scroller_content">
+              <div class="favourite_row__container">
+                <div class="container_poster">
+                  <div class="container">
+                    <img class="poster_image show" src="./src/assets/pama.jpeg" alt="">
+                    <div class="movie_button">
+                      <div class="heart"></div>
+                    </div>
+                    <span>2022</span>
+                  </div>
+                </div>
+                <div class="container_poster">
+                  <div class="container">
+                    <img class="poster_image show" src="./src/assets/kira.jpeg" alt="">
+                    <div class="movie_button">
+                      <div class="heart"></div>
+                    </div>
+                    <span>2022</span>
+                  </div>
+                </div>
+                <div class="container_poster">
+                  <div class="container">
+                    <img class="poster_image show" src="./src/assets/desire.jpeg" alt="">
+                    <div class="movie_button">
+                      <div class="heart"></div>
+                    </div>
+                    <span>2022</span>
+                  </div>
+                </div>
+                <div class="container_poster">
+                  <div class="container">
+                    <img class="poster_image show" src="./src/assets/eva.jpeg" alt="">
+                    <div class="movie_button">
+                      <div class="heart"></div>
+                    </div>
+                    <span>2022</span>
+                  </div>
+                </div>
+                <div class="container_poster">
+                  <div class="container">
+                    <img class="poster_image show" src="./src/assets/yz0.jpeg" alt="">
+                    <div class="movie_button">
+                      <div class="heart"></div>
+                    </div>
+                    <span>2022</span>
+                  </div>
+                </div>
+                <div class="container_poster">
+                  <div class="container">
+                    <img class="poster_image show" src="./src/assets/dd0.jpeg" alt="">
+                    <div class="movie_button">
+                      <div class="heart"></div>
+                    </div>
+                    <span>2022</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section> -->
+
       </div>
 
       <div class="mostPopularPreview_righ">
@@ -417,7 +494,136 @@
           <div class="container_card container_card--loading"></div> -->
         </div>
       </div>
+ 
+      <section id="favouritePreview" class="favouritePreview_container">
+        <h2 class="favourite_title">Favourites movies</h2>
+        <article class="favourites_movieList">
+          <div class="scroller_content">
+            <div class="favourite_row__container">
+              <div class="container_poster">
+                <div class="container">
+                  <img class="poster_image show" src="./src/assets/pama.jpeg" alt="">
+                  <div class="movie_button">
+                    <div class="heart"></div>
+                  </div>
+                  <span>2022</span>
+                </div>
+              </div>
+              <div class="container_poster">
+                <div class="container">
+                  <img class="poster_image show" src="./src/assets/kira.jpeg" alt="">
+                  <div class="movie_button">
+                    <div class="heart"></div>
+                  </div>
+                  <span>2022</span>
+                </div>
+              </div>
+              <div class="container_poster">
+                <div class="container">
+                  <img class="poster_image show" src="./src/assets/desire.jpeg" alt="">
+                  <div class="movie_button">
+                    <div class="heart"></div>
+                  </div>
+                  <span>2022</span>
+                </div>
+              </div>
+              <div class="container_poster">
+                <div class="container">
+                  <img class="poster_image show" src="./src/assets/eva.jpeg" alt="">
+                  <div class="movie_button">
+                    <div class="heart"></div>
+                  </div>
+                  <span>2022</span>
+                </div>
+              </div>
+              <div class="container_poster">
+                <div class="container">
+                  <img class="poster_image show" src="./src/assets/yz0.jpeg" alt="">
+                  <div class="movie_button">
+                    <div class="heart"></div>
+                  </div>
+                  <span>2022</span>
+                </div>
+              </div>
+              <div class="container_poster">
+                <div class="container">
+                  <img class="poster_image show" src="./src/assets/dd0.jpeg" alt="">
+                  <div class="movie_button">
+                    <div class="heart"></div>
+                  </div>
+                  <span>2022</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+      
     </section>
+
+    <!-- <section id="favouritePreview" class="favouritePreview_container">
+      <h2 class="favourite_title">Favourites movies</h2>
+      <article class="favourites_movieList">
+        <div class="scroller_content">
+          <div class="favourite_row__container">
+            <div class="container_poster">
+              <div class="container">
+                <img class="poster_image show" src="./src/assets/pama.jpeg" alt="">
+                <div class="movie_button">
+                  <div class="heart"></div>
+                </div>
+                <span>2022</span>
+              </div>
+            </div>
+            <div class="container_poster">
+              <div class="container">
+                <img class="poster_image show" src="./src/assets/kira.jpeg" alt="">
+                <div class="movie_button">
+                  <div class="heart"></div>
+                </div>
+                <span>2022</span>
+              </div>
+            </div>
+            <div class="container_poster">
+              <div class="container">
+                <img class="poster_image show" src="./src/assets/desire.jpeg" alt="">
+                <div class="movie_button">
+                  <div class="heart"></div>
+                </div>
+                <span>2022</span>
+              </div>
+            </div>
+            <div class="container_poster">
+              <div class="container">
+                <img class="poster_image show" src="./src/assets/eva.jpeg" alt="">
+                <div class="movie_button">
+                  <div class="heart"></div>
+                </div>
+                <span>2022</span>
+              </div>
+            </div>
+            <div class="container_poster">
+              <div class="container">
+                <img class="poster_image show" src="./src/assets/yz0.jpeg" alt="">
+                <div class="movie_button">
+                  <div class="heart"></div>
+                </div>
+                <span>2022</span>
+              </div>
+            </div>
+            <div class="container_poster">
+              <div class="container">
+                <img class="poster_image show" src="./src/assets/dd0.jpeg" alt="">
+                <div class="movie_button">
+                  <div class="heart"></div>
+                </div>
+                <span>2022</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section> -->
   </main>
 
   <footer>

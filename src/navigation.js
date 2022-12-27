@@ -1,5 +1,21 @@
+let maxPage;
+let page = 1;
+let infiniteScroll;
+
+// let history = [];
+// window.addEventListener('onload', () => {
+//   if (history.length > 1) {
+//     location.hash = history[history.length - 2];
+//     history.splice(-2, 2);
+//   } else {
+//     history.pop();
+//     location.hash = "#home";
+//   }
+// })
+
 window.addEventListener("DOMContentLoaded", navigator, false)
 window.addEventListener("hashchange", navigator, false)
+mostPopularPreviewGrid.addEventListener('scroll', infiniteScroll, false);
 
 // https://www.linkpicture.com/q/screencapture-localhost-5501-2022-11-02-19_04_56.png
 // https://ibb.co/nzTLnbk
@@ -88,6 +104,7 @@ cancelBtn.addEventListener('click', () => {
 
 trendsButton.addEventListener('click', () => {
   location.hash = "#trends=";
+  // window.location.reload()
   window.scroll({
     top: 575,
     behavior: 'smooth'
@@ -96,6 +113,11 @@ trendsButton.addEventListener('click', () => {
 })
 
 function navigator() {
+  if(infiniteScroll) {
+    mostPopularPreviewGrid.remove('scroll', infiniteScroll, {passive: false});
+    infiniteScroll = undefined;
+  }
+
   if (location.hash.startsWith("#trends")) {
     trendsPage()
   } else if (location.hash.startsWith("#search=")) {
@@ -113,6 +135,10 @@ function navigator() {
   } else {
     homePage()
   }
+
+  if(infiniteScroll) {
+    mostPopularPreviewGrid.addEventListener('scroll', infiniteScroll, {passive: false});
+  }
 }
 
 function homePage() {
@@ -125,14 +151,20 @@ function homePage() {
   homeMoviesSection.classList.remove("inactive")
   relatedMovies.classList.add("inactive");
   profileInformation.classList.add("inactive");
+
   
+  // infiniteScroll = getPaginatedPopularMovies;
+  getPaginatedPopularMovies()
+
   getTrendingMoviesPreview();
   getCategoriesPreview();
   getMostPopular();
   getUpcomingMoviesPreview();
   getNowPlayingMoviesPreview();
+  getLikedMovies();
   // console.log("Home!!")
 }
+
 function categoriesPage() {
   bannerSliceSection.classList.remove("inactive");
   movieDetailSection.classList.add("inactive");
@@ -143,6 +175,7 @@ function categoriesPage() {
   profileInformation.classList.add("inactive");
   banner.classList.add("inactive");
   trendingPreviewMovieList.classList.add("inactive");
+
   // console.log("Categories!!")
 
   //['#category', 'id-name']
@@ -152,9 +185,15 @@ function categoriesPage() {
   // headerTitle.innerText = categoryName;
   headerTitle.innerText = categoryName.replaceAll("%20", ' ');
   getMoviesByCategory(categoryId); 
+
+  // infiniteScroll = getPaginatedMoviesByCategory(categoryId);
+  getPaginatedMoviesByCategory(categoryId);
+
   getCategoriesPreview();
   getUpcomingMoviesPreview();
   getNowPlayingMoviesPreview();
+  getLikedMovies();
+
 }
 
 function movieDetailsPage() {
@@ -167,14 +206,14 @@ function movieDetailsPage() {
   relatedMovies.classList.remove("inactive");
   profileInformation.classList.add("inactive");
   banner.classList.add("inactive");
-  // trendingPreviewMovieList.classList.add("inactive");
   showSkeleton.classList.add("inactive")
-  
+
   window.scrollTo(0, 0);
 
   const [_, movieTvId] = location.hash.split('=');
   // console.log("id number", movieTvId);
   getMovieById(movieTvId);
+
 }
 
 function tvDetailsPage() {
@@ -186,7 +225,6 @@ function tvDetailsPage() {
   relatedMovies.classList.remove("inactive");
   profileInformation.classList.add("inactive");
   banner.classList.add("inactive");
-  // trendingPreviewMovieList.classList.add("inactive");
   showSkeleton.classList.add("inactive")
   
   window.scrollTo(0, 0);
@@ -203,7 +241,6 @@ function searchPage() {
   homeMoviesSection.classList.remove("inactive")
   relatedMovies.classList.add("inactive");
   profileInformation.classList.add("inactive");
-  // trendingPreviewMovieList.classList.add("inactive");
   
   // ['#search', 'suits']
   const [_, query] = location.hash.split('=');
@@ -220,7 +257,8 @@ function searchPage() {
 
   // console.log("message", query.message);
   
-
+  // infiniteScroll = getPaginatedMoviesBySearch(query);
+  getPaginatedMoviesBySearch(query);
 
   // headerTitle.innerText = categoryName;
   // headerTitle.innerText = "Search results found";
@@ -229,6 +267,8 @@ function searchPage() {
   getCategoriesPreview();
   getUpcomingMoviesPreview();
   getNowPlayingMoviesPreview();
+  getLikedMovies();
+
 }
 
 function trendsPage() {
@@ -243,6 +283,9 @@ function trendsPage() {
 
   // const [_, movieTvId] = location.hash.split('=');
   // getMovTvById(movieTvId);
+
+  // infiniteScroll = getPaginatedTrendingMovies;
+  getPaginatedTrendingMovies();
 
   getCategoriesPreview();
   getTrendingMovies();
