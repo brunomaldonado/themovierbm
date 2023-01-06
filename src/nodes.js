@@ -30,7 +30,6 @@ const headerTitle = document.querySelector('.header_title');
 /* ELEMENTS */
 const brandButton = document.getElementById('brandButton')
 const searchFormInput = document.querySelector('#searchForm input');
-// const btnSearchForm = document.getElementById('btn_searchForm');
 const searchBtn = document.querySelector('.search_btn');
 const cancelBtn = document.querySelector('.cancel_btn');
 const searchBox = document.querySelector('.search_box');

@@ -1064,7 +1064,6 @@ async function getPaginatedMoviesByCategory(id) {
   })
 }
 
-// minutes 26, 
 async function getMoviesBySearch(query) {
   // const request = await api('discover/movie?with_genres=99&language=pt-BR');
   // const request = await api('search/tv', {

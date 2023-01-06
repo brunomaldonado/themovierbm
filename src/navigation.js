@@ -17,10 +17,6 @@ window.addEventListener("DOMContentLoaded", navigator, false)
 window.addEventListener("hashchange", navigator, false)
 mostPopularPreviewGrid.addEventListener('scroll', infiniteScroll, false);
 
-// https://www.linkpicture.com/q/screencapture-localhost-5501-2022-11-02-19_04_56.png
-// https://ibb.co/nzTLnbk
-// https://ibb.co/7KN4gpj
-
 brandButton.addEventListener('click', () => {
   location.hash = "#home";
   homePage();
