@@ -34,11 +34,13 @@ searchBtn.addEventListener('click', () => {
   searchBtn.classList.add('active');
   cancelBtn.classList.add('active');
   // cancelBtn.classList.remove('active');
+  // login.add('active');
 
   const inputData = location.hash = "#search=" + searchInput.value.trim();
   searchInput.value = "";
 
   const query = inputData;
+  console.log("search", query);
   const [_, input] = query.split('=');
 
   // console.log("search input", input)
@@ -47,6 +49,8 @@ searchBtn.addEventListener('click', () => {
     getMostPopular()
     // console.log("empty string")    
   } 
+
+  
 
 
   // console.log("input data", inputData)
@@ -74,6 +78,7 @@ btnOverlay.addEventListener('click', () => {
   cancelBtn.style.display = "block";
   btnOverlay.style.display = 'none';
   console.log("click button one")
+  // login.add('active');
 })
 
 window.addEventListener('scroll', () => {
@@ -88,6 +93,7 @@ window.addEventListener('scroll', () => {
       cancelBtn.classList.remove('active');
       cancelBtn.style.display = "none";
       searchInput.innerText = '';
+      // login.remove('active');
 } else {
       // toTop.classList.remove('active');
   }
@@ -100,6 +106,7 @@ cancelBtn.addEventListener('click', () => {
   cancelBtn.classList.remove('active');
   btnOverlay.style.display = 'block';
   searchInput.innerText = '';
+  // login.remove('active');
 })
 
 trendsButton.addEventListener('click', () => {
@@ -207,7 +214,6 @@ function movieDetailsPage() {
   profileInformation.classList.add("inactive");
   banner.classList.add("inactive");
   showSkeleton.classList.add("inactive")
-
   window.scrollTo(0, 0);
 
   const [_, movieTvId] = location.hash.split('=');

@@ -36,6 +36,7 @@ const cancelBtn = document.querySelector('.cancel_btn');
 const searchBox = document.querySelector('.search_box');
 const searchInput = document.querySelector('input')
 const btnOverlay = document.querySelector('.overlay_btn');
+const login = document.querySelector('.login')
 const votes = document.querySelector('.votes');
 const detailsVotes = document.querySelector('.details_votes');
 const bannerButton = document.getElementById('bannerButton');

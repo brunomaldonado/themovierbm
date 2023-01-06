@@ -22,6 +22,7 @@ const noPicture = "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg
 const notAvailable =
   "https://i.ibb.co/y55nq8j/018c20i5z9n2-Bo9.jpg"
 
+// let language = navigator.language;
 
 const api = axios.create({
   baseURL: 'https://api.themoviedb.org/3/',
@@ -30,6 +31,7 @@ const api = axios.create({
   },
   params: {
     'api_key': API_KEY,
+    // 'language': language,
   }
 })
 
@@ -497,7 +499,7 @@ async function getCategoriesPreview() {
 
 function leftCreateMovies(movies, container, {
   clean = true
-} = {}) {
+}) {
   // function leftCreateMovies(movies, container) {
   //   mostPopularPreviewGrid.innerHTML = "";
 
@@ -1104,6 +1106,10 @@ async function getMoviesBySearch(query) {
   //   // } else {
   //   //   console.log("discover");
   //   // }
+  window.scroll({
+    top: 570,
+    behavior: 'smooth'
+  })
   leftCreateMovies(secondData, mostPopularPreviewGrid, {
     clean: true
   })
@@ -1439,6 +1445,8 @@ async function getPaginatedTrendingMovies() {
 }
 
 async function getMovieById(id) {
+  // const container = document.querySelector('.slideshow');
+  // container.innerHTML = "";
   previewTriller.innerHTML = "";
   detailsVotes.innerHTML = "";
   // const infoMovie = await getMovieInfo(id, "movie")
@@ -1795,7 +1803,7 @@ async function getImages(id) {
   // console.log("images", data.backdrops);
 
   const backdropPaths = data.backdrops;
-  // console.log("backdropPaths", backdropPaths);
+  console.log("backdropPaths", backdropPaths);
   // console.log("backdropPaths", backdropPaths.length);
 
   const carousel_list = document.querySelector('.glider-track');
@@ -1944,6 +1952,7 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 })
 
+
 async function getPerson(id) {
   const {
     data
@@ -2063,9 +2072,11 @@ async function getPerson(id) {
     // })
     const heartButton = document.createElement('button');
     heartButton.classList.add('heart');
+    likedMoviesList()[movie.id] && heartButton.classList.add('heart_button__liked');
     heartButton.addEventListener('click', () => {
       heartButton.classList.toggle('heart_button__liked');
-      likeButton.classList.toggle('movie_button__liked');
+      likeMovie(movie);
+      getLikedMovies()
     })
     const date = document.createElement('span');
     const getString = `${movie?.release_date || movie?.first_air_date}`;
@@ -2166,7 +2177,8 @@ function getLikedMovies() {
     })
     const likeButton = document.createElement('div');
     likeButton.classList.add('movie_button');
-    const heartButton = document.createElement('button');
+
+     const heartButton = document.createElement('button');
     heartButton.classList.add('heart');
     likedMoviesList()[movie.id] && heartButton.classList.add('heart_button__liked');
     heartButton.addEventListener('click', () => {
@@ -2193,3 +2205,8 @@ function getLikedMovies() {
 }
 
 getPopularBannerPreviews()
+
+
+
+
+
